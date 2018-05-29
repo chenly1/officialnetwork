@@ -1,7 +1,7 @@
 <template>
   <div calss="medo">
 <el-container>
-  <el-main>Main</el-main>
+  <el-main></el-main>
 </el-container>
   </div>
 </template>
