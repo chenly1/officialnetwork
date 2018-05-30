@@ -6,6 +6,7 @@ import Summary from '@/components/main/Summary'
 import Works from '@/components/main/Works'
 import Media from '@/components/main/Media'
 import Memo from '@/components/main/Memo'
+import bottomMenu from '@/components/main/bottomMenu'
 Vue.use(Router)
 
 export default new Router({
@@ -34,6 +35,11 @@ export default new Router({
       path: '/memo',
       name: 'Memo',
       component: Memo
+    },
+    {
+      path: '/bottomMenu',
+      name: 'bottomMenu',
+      component: bottomMenu
     }
   ]
 })

@@ -1,68 +1,51 @@
 <template>
-  <div class="main">
-<el-container >
-  <el-main center=true >
-    <Summary v-show="show=='1'"></Summary>
-    <Works  v-show="show=='2'"></Works>
-    <Media v-show="show=='3'"></Media>
-    <Memo   v-show="show=='4'"></Memo>
-    <Contact v-show="show=='5'"></Contact>
-  </el-main>
-  <el-footer>
-  <el-row>
-  <el-col :span="12"> 
-    <ul class="subnav02" v-show="show==3||show==4">
-        	<li><a class="onlink" href="#">2010</a></li>
-            <li><a href="publication2009.html">2009</a></li>
-            <li><a href="publication2008.html">2008</a></li>
-            <li><a href="publication2007.html">2007</a></li>
-            <li><a href="publication2006.html">2006</a></li>
-            <li><a href="publication2005.html">2005</a></li>
-            <li><a href="publication2004.html">2004</a></li>
-            <li><a href="publication2003.html">2003</a></li>
-            <li><a href="publication2002.html">2002</a></li></ul>
-    <ul class="navigation">
-            <li  v-for="(item,index) in items "   :key="index" @click="changeView(item.id)" :class="{no_bg:index==items.length-1}"><a :class="{onlink:show==item.id}"  href="javascript:void(0);">{{item.name}}</a></li>
-            <!-- <li><a href="javascript:void(0);">作品</a></li>
-            <li><a href="javascript:void(0);">媒体</a></li>
-            <li><a href="javascript:void(0);">记事</a></li>
-            <li class="no_bg"><a href="javascript:void(0);">联系</a></li> -->
-       </ul>
 
-  </el-col>
-</el-row>
-</el-footer>
-</el-container>
-  </div>
+
+
+ <div >
+       
+        <ul class="navigation">
+        	<li><a href="overview01.html">概述</a></li>
+        	<li><a href="works.html">作品</a></li>
+        	<li><a class="onlink" href="publication2010.html">媒体</a></li>
+        	<li><a class="onlink" href="news2010.html">记事</a></li>
+        	<li class="no_bg"><a href="contact.html">联系</a></li>
+        </ul>
+    </div>
 </template>
 
 <script>
-import Summary from './Summary.vue';
-import Works from './Works.vue';
-import Media from './Media.vue';
-import Memo from './Memo.vue';
-import Contact from './Contact.vue';
-import bottomMenu from './bottomMenu.vue';
 export default {
-  components: {Summary,Works,Media,Memo,Contact,bottomMenu}, 
   data () {
     return {
-      show:'1',
-      items:[{id:1,name:"概述"},
-      {id:2,name:"作品"},
-      {id:3,name:"媒体"},
-      {id:4,name:"记事"},
-      {id:5,name:"联系"}],
-      msg: 'Welcome to Your Vue.js App'
+        tableData: [{
+            project:"青浦下幼儿园",
+            type:"建成",
+            date: '2016-2009',
+          }, {
+            project:"青浦下幼儿园11",
+            type:"建成",
+            date: '2016-2009',
+          }, {
+            project:"青浦下幼儿园22",
+            type:"方案",
+            date: '2016-2009',
+          }, {
+            project:"青浦下幼儿园33",
+            type:"建成",
+            date: '2016-2009',
+          }]
     }
   },
   methods:{
-    changeView:function(id){
-        this.show=id
+    rowchange:function(currentRow, oldCurrentRow){
+      alert("123")
     },
-    itemClick:function(){
+    cellmouseover:function(row, column, cell, event){
+     
+      debugger
 
-      alert("12313")
+
     }
   }
 }
@@ -70,46 +53,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
- /* .el-header, .el-footer {
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
-  
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  } */
-  
-  .el-main {
-    /* background-color: #E9EEF3; */
-    height: 870px;
-    color: #333;
-    text-align: center;
-    /* line-height: 160px; */
-  }
-  
-  /* body > .el-container {
-    margin-bottom: 40px;
-  }
-  
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-  
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }  */
-   /* .el-container {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-
-  } */
-  body {FONT-SIZE: 12px; BaCKGROUND: #fff; COLOR: #5b5b5b; FONT-FaMILY: "Lucida Sans Unicode", "Lucida Grande", sans-serif; POSITION: relative; HEIGHT: 100%}
+body {FONT-SIZE: 12px; BaCKGROUND: #fff; COLOR: #5b5b5b; FONT-FaMILY: "Lucida Sans Unicode", "Lucida Grande", sans-serif; POSITION: relative; HEIGHT: 100%}
 html {HEIGHT: 100%}
 img {border:0;}
 ol, ul {PaDDING-RIGHT: 0px; PaDDING-LEFT: 0px; PaDDING-BOTTOM: 0px; MaRGIN: 0px; PaDDING-TOP: 0px; liST-STYLE-TYPE: none}
@@ -120,7 +64,6 @@ a {CURSOR: pointer; TEXT-DECORaTION: none}
 a:link {COLOR: #888}
 a:visited {COLOR: #888}
 a:active {COLOR: #cc0000; TEXT-DECORaTION: none}
-a:actived {COLOR: #cc0000; TEXT-DECORaTION: none}
 a:hover {COLOR: #cc0000; TEXT-DECORaTION: none}
 a.onlink {COLOR: #cc0000}
 .welcome {MaRGIN-TOP: -5px; LEFT: 50%; MaRGIN-LEFT: -180px; WIDTH: 360px; POSITION: absolute; TOP: 50%; HEIGHT: 20px}
@@ -138,7 +81,7 @@ a.onlink {COLOR: #cc0000}
 .navigation li a:hover {COLOR: #cc0000; TEXT-DECORaTION: none}
 .navigation li.no_bg {PaDDING-RIGHT: 0px; BaCKGROUND: none transparent scroll repeat 0% 0%}
 ul.subnav02 {LEFT: 10px; BOTTOM: 10px; POSITION: absolute}
-ul.subnav02 li {FONT-SIZE: 17px; FLOaT: left}
+ul.subnav02 li {FONT-SIZE: 9px; FLOaT: left}
 ul.subnav02 li a {PaDDING-RIGHT: 10px}
 #main {liNE-HEIGHT: 20px; HEIGHT: 175px}
 #main .conImg {FLOaT: left; MaRGIN: 4px 2px 0px 0px;}

@@ -3,7 +3,7 @@
 <el-container style="height: 340px;width: 775px;">
   <el-aside style="width: 200px;"  ><img src="../../static/sucai/img_overview01.jpg"/></el-aside>
   <el-container>
-    <el-header> <el-tabs v-model="activeName" @tab-click="handleClick">
+    <el-header> <el-tabs v-model="activeName" @tab-click="click">
     <el-tab-pane label="出版" name="first"></el-tab-pane>
     <el-tab-pane label="评论" name="second"></el-tab-pane>
     <el-tab-pane label="展览" name="third"></el-tab-pane>
@@ -19,7 +19,13 @@
 export default {
   data () {
     return {
+      activeName:"first",
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods:{
+    click:function(){
+
     }
   }
 }
