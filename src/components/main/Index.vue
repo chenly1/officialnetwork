@@ -1,16 +1,17 @@
 <template>
   <div class="main">
 <el-container >
-  <el-main center=true >
-    <Summary v-show="show=='1'"></Summary>
+  <el-main>
+    <Summary v-show="show=='1'" calss="summary-outer"></Summary>
     <Works  v-show="show=='2'"></Works>
     <Media v-show="show=='3'"></Media>
     <Memo   v-show="show=='4'"></Memo>
-    <Contact v-show="show=='5'"></Contact>
+    <Contact v-show="show=='5'"></Contact> 
   </el-main>
   <el-footer>
   <el-row>
   <el-col :span="12"> 
+    <div style="width:60px"></div>
     <ul class="subnav02" v-show="show==3||show==4">
         	<li><a class="onlink" href="#">2010</a></li>
             <li><a href="publication2009.html">2009</a></li>
@@ -70,6 +71,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.summary-outer{
+margin:50px 50px 50px 50px;
+padding:50px 50px 50px 50px;
+
+}
  /* .el-header, .el-footer {
     color: #333;
     text-align: center;
@@ -84,10 +90,9 @@ export default {
   } */
   
   .el-main {
-    /* background-color: #E9EEF3; */
+    /* background-color: #E9EEF3;  */
     height: 870px;
     color: #333;
-    text-align: center;
     /* line-height: 160px; */
   }
   
@@ -201,4 +206,30 @@ h3{font:12px normal; margin:30px 0 20px 0;}
 .contact .emailList span {MaRGIN-RIGHT: 7px}
 ul.worktext{padding-bottom:30px;}
 
+
+
+
+/* 滚动条css */
+ ::-webkit-scrollbar {  
+        width: 3px;  
+        height: 4px;  
+         background-color: rgb(161, 31, 37);  
+      }  
+      定义滚动条轨道 内阴影+圆角  
+      ::-webkit-scrollbar-track {  
+        /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);   */
+        /* background:#DDDDDD;   */
+      }  
+      定义滑块 内阴影+圆角
+      ::-webkit-scrollbar-thumb {  
+        border-radius: 3px;  
+        height: 4px; 
+        /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);   */
+        background-color:#555555;  
+      }  
+      ::-webkit-scrollbar-thumb:hover {  
+         border-radius: 3px;  
+        /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);   */
+        background-color:#333333;  
+      } 
 </style>
