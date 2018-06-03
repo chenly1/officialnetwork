@@ -138,7 +138,6 @@ h3{font:12px normal; margin:30px 0 20px 0;}
 .active ul li a {CURSOR: pointer; COLOR: #999}
 .active ul li.nolink{color:#999}
 .active ul li a:hover { color:#333;}
-.active ul li a.link {}
 .active ul li a.hover{CURSOR: pointer; COLOR: #5b5b5b;;}
 .contact .emailList {MaRGIN-TOP: 40px}
 .contact .emailList span {MaRGIN-RIGHT: 7px}

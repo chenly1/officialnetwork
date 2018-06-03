@@ -1,7 +1,7 @@
 <template>
   <div calss="media">
   <el-container class="out-container">
-  <el-aside ><img  src="../../static/sucai/img_overview01.jpg"/></el-aside>
+  <el-aside ><img  :src="mediaImg"/></el-aside>
   <el-container>
     <el-header style="height:30px;"> 
      <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -9,15 +9,32 @@
       </el-tabs>  -->
        <div class="menu">
         <ul>
-            <li @click="changeMediaView(meida)" v-for="media in medias" :key="media.id"><a href="javascript:void(0);">{{media.label}}</a></li>
+            <li @click="changeMediaView(media)" v-for="media in medias" :key="media.id"><a href="javascript:void(0);">{{media.label}}</a></li>
         </ul>
     </div>
   </el-header> 
     <el-main>
        <div v-show="activeName=='publish'">
-         
-         
-         </div>   
+         <ul class="publishList" v-for="(pub,index) in mediaView.publish" :key="index" v-if="pub.year==showYear" >
+            <li  @mouseenter="changeimg(item)" class="pub" v-for="(item,index) in pub.publishList" :key="index" >{{item.content}}</li>
+         </ul>
+         </div>  
+         <div v-show="activeName=='comment'">
+         <ul class="commentList" >
+            <li   @click="getDetail(comm)"  @mouseenter="changeimg(comm)" class="comm"  v-for="(comm,index) in mediaView.comment" :key="index">{{comm.content}}</li>
+         </ul>
+         </div>  
+
+          <div v-show="activeName=='exhibition'">
+         <ul class="exhtList" >
+            <li  @mouseenter="changeimg(exh)" class="comm"  v-for="(exh,index) in mediaView.exhibition" :key="index">
+              <el-row :gutter="10">
+                 <el-col :span="3">{{exh.year}}</el-col>
+                 <el-col :span="21">{{exh.content}}</el-col>
+             </el-row>
+              </li>
+         </ul>
+         </div>    
     </el-main>
   </el-container>
 </el-container> 
@@ -28,20 +45,67 @@
 export default {
   data () {
     return {
+      yearList:[2010,2009,2008,2007,2006,2005,2004,2003,2002],
+      mediaImg:"",
       activeName: 'publish',
       medias:[{id:1,label:"出版",name:"publish"},
       {id:2,label:"评论",name:"comment"},
       {id:3,label:"展览",name:"exhibition"}],
-       mediaView:[{}]
+       mediaView:{publish:[
+{ year:"2010",publishList:[
+{img:require('../../static/sucai/img_overview01.jpg'),content:"《时代建筑》2006/1，刊登了陈璐的文章《对青浦私营企业协会办公楼与夏雨幼儿园的比较阅读》，同时刊登了大舍的文章《设计与完成——青浦私营企业协会办公楼设计》。"},
+{img:require('../../static/sucai/img_overview02.jpg'),content:"《建筑师》2006/4，刊登了《思想无言——“大舍”主创建筑师访谈》以及彭怒的文章《“建造”与“观念”——评大舍的青浦私营企业协会办公楼》。"},
+{img:require('../../static/sucai/img_overview03.jpg'),content:"由荷兰Nai Publishers出版的《中国当代》收录了青浦夏雨幼儿园"},
+{img:require('../../static/sucai/img_overview04.jpg'),content:"意大利杂志《AREA》第85期收录了青浦夏雨幼儿园。"},
+{img:require('../../static/sucai/img_overview02.jpg'),content:"荷兰杂志《de Architect》2006/5，收录了青浦私营企业协会办公与接待中心。"}]},
+{ year:"2009",publishList:[{img:require('../../static/sucai/img_overview02.jpg'),content:"《时代建筑》2006/1，刊登了陈璐的文章《对青浦私营企业协会办公楼与夏雨幼儿园的比较阅读》，同时刊登了大舍的文章《设计与完成——青浦私营企业协会办公楼设计》。"},
+{img:require('../../static/sucai/img_overview02.jpg'),content:"《建筑师》2006/4，刊登了《思想无言——“大舍”主创建筑师访谈》以及彭怒的文章《“建造”与“观念”——评大舍的青浦私营企业协会办公楼》。"},
+{img:require('../../static/sucai/img_overview02.jpg'),content:"由荷兰Nai Publishers出版的《中国当代》收录了青浦夏雨幼儿园"},
+{img:require('../../static/sucai/img_overview02.jpg'),content:"意大利杂志《AREA》第85期收录了青浦夏雨幼儿园。"},
+{img:require('../../static/sucai/img_overview02.jpg'),content:"荷兰杂志《de Architect》2006/5，收录了青浦私营企业协会办公与接待中心。"}]}
+        ],
+ comment:[{id:1,content:"《漂浮三连宅》",img:require('../../static/sucai/img_overview01.jpg')},
+ {id:2,content:"《大舍在东莞理工学院－电子系馆、计算机系馆、文科楼的拼图》",img:require('../../static/sucai/img_overview02.jpg')},
+{id:3, content:"《“建造”与“观念”——评大舍的青浦私营企业协会办公与接待中心》",img:require('../../static/sucai/img_overview03.jpg')},
+{id:4,content:"《取与舍：对夏雨幼儿园建筑构思的评论》",img:require('../../static/sucai/img_overview04.jpg')},
+{id:5,content:"《记忆的艺术——关于大舍建筑设计事务所建筑作品的思考》",img:require('../../static/sucai/img_overview01.jpg')},
+{id:6,content:"《大舍的“型”》",img:require('../../static/sucai/img_overview01.jpg')},
+{id:7,content:"《风景的引力——上海嘉定新城燃气门站办公楼的图纸阅读笔记》",img:require('../../static/sucai/img_overview01.jpg')},
+{id:8,content:"《轻清江南》",img:require('../../static/sucai/img_overview01.jpg')}] ,
+exhibition:[{year:"2002年",content:'“都市营造”2002上海双年展，上海美术馆',img:require('../../static/sucai/img_overview01.jpg')},
+{year:"2003年",content:' “那么，中国呢？”当代中国艺术展 ，法国巴黎蓬皮杜中心',img:require('../../static/sucai/img_overview02.jpg')},
+{year:"2003年",content:' “建与筑”当代中国建筑展，德国杜塞多夫',img:require('../../static/sucai/img_overview03.jpg')},
+{year:"2004年",content:' “东南西北”建筑展，法国波尔多arc en reve画廊',img:require('../../static/sucai/img_overview04.jpg')},
+{year:"2004年",content:' “状态”当代中国青年建筑师作品8人展，北京中华世纪坛',img:require('../../static/sucai/img_overview01.jpg')},
+{year:"2005年",content:' “城市，开门”首届深圳城市/建筑双年展，深圳OCAT艺术中心',img:require('../../static/sucai/img_overview01.jpg')},
+{year:"2006年",content:' “当代中国”建筑与艺术展 荷兰鹿特丹荷兰建筑学院(NAI)',img:require('../../static/sucai/img_overview01.jpg')},
+{year:"2008年",content:' “创意中国”当代中国设计展，英国伦敦V&A博物馆',img:require('../../static/sucai/img_overview01.jpg')},
+{year:"2008年",content:' “建筑乌托邦”中国新锐建筑事务所设计展，比利时布鲁塞尔CIVA建筑与都市中心',img:require('../../static/sucai/img_overview01.jpg')},
+{year:"2008年",content:' “位置”中国新生代建筑师肖像，法国巴黎夏佑宫法国国家建筑与遗产之城博物馆',img:require('../../static/sucai/img_overview01.jpg')},
+{year:"2009年",content:' “不自然”设计展，北京天安时间当代艺术中心',img:require('../../static/sucai/img_overview01.jpg')},
+{year:"2009年",content:' 中国当代建筑展，西班牙加的斯建筑学院',img:require('../../static/sucai/img_overview01.jpg')},
+{year:"2010年",content:' 中国新锐建筑创作展，意大利威尼斯建筑双年展CA’ASI艺术馆',img:require('../../static/sucai/img_overview01.jpg')}]
+       }
+       
     }
   },
+  props:["showYear"],
   methods:{
-      changeSummaryView:function(summary){
-         this.activeName=summary.name;
+      changeMediaView:function(media){
+         debugger
+         this.activeName=media.name;
+         this.$emit('outActiveNameChange',media.name,'lalala');
+      },
+      changeimg:function(item){
+        this.mediaImg=item.img;
+      },
+      getDetail:function(comm){
+        debugger
+         window.open(window.location.origin + '/#/media/commentView/'+comm.id)
       }
     },
   mounted:function(){
-    
+      this.mediaImg=this.mediaView.publish[0].publishList[0].img;
   }
 }
 </script>
@@ -150,5 +214,29 @@ list-style-type:none;
   padding:0cm 0cm 0cm 0cm;
   margin-top: 0cm;
 }
+.publishList{
+  list-style-type:none;
+  padding:0cm 0cm 0cm 0cm;
+  margin-top: 0cm;
+}
 
+.pub:hover{
+    color:rgba(58, 57, 54, 0.698);
+}
+.commentList{
+   list-style-type:none;
+  padding:0cm 0cm 0cm 0cm;
+  margin-top: 0cm;
+}
+.comm:hover{
+  color:rgba(58, 57, 54, 0.698);
+}
+.exhtList{
+     list-style-type:none;
+  padding:0cm 0cm 0cm 0cm;
+  margin-top: 0cm;
+}
+.exh{
+  color:rgba(58, 57, 54, 0.698);
+}
 </style>
