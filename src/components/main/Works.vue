@@ -1,24 +1,18 @@
 <template>
   <div calss="works">
    <el-container class="out-container">
-  <el-aside ><img  src="../../static/sucai/img_overview01.jpg"/></el-aside>
-  
+  <el-aside ><img  :src="showimg"/></el-aside>
     <el-main>
-    <el-table 
-      :data="tableData" :show-header="false"  @current-change="rowchange()" @cell-mouse-enter="cellmouseover"
-      style="width: 100%">
-      <el-table-column
-        prop="project"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="type"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="date" width="180">
-      </el-table-column>
-    </el-table> 
+         <ul class="worksList" >
+            <li @mouseenter="changeimg(work)"  @click="intoWork" class="work" v-for="(work,index) in works" :key="index">
+                 <el-row :gutter="10">
+                 <el-col :span="11">{{work.name}}</el-col>
+                 <el-col :span="3">{{work.type}}</el-col>
+                 <el-col :span="10">{{work.years}}</el-col>
+             </el-row>
+
+            </li>
+         </ul>
     </el-main>
 
 </el-container> 
@@ -29,41 +23,46 @@
 export default {
   data () {
     return {
-      activeName: 'introduction',
-      summarys:[{id:1,label:"简介",name:"introduction"},
-      {id:2,label:"合伙人",name:"partner"},
-      {id:3,label:"团队",name:"team"},
-      {id:4,label:"奖项",name:"prize"}],
-      summaryView:{introduction:{
-
-        msg:"大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。" }, prize:[{year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      {year:"1993",content:"智障大奖"},
-      ]}
+    showimg:"",
+    works:[ { id:"1",img:require('../../static/sucai/img_overview01.jpg'), name:"龙美术馆（西岸馆）",  type:"建成", years:" 2011-2014"},
+ {  id:"2",img:require('../../static/sucai/img_overview02.jpg'),name:"青浦青少年活动中心 " ,type:" 建成 ", years:"2009-2012"},
+ { id:"3",img:require('../../static/sucai/img_overview03.jpg'),name:"螺旋艺廊Ⅰ", type:" 建成", years :"2009-2011"},
+ { id:"4",img:require('../../static/sucai/img_overview04.jpg'),name:"螺旋艺廊Ⅱ" ,type:"建成",  years:"2009-2011"},
+ { id:"5",img:require('../../static/sucai/img_overview01.jpg'),name:"嘉定新城幼儿园" ,type:" 建成",years:" 2008-2010"},
+ { id:"6",img:require('../../static/sucai/img_overview01.jpg'),name:"嘉定新城区燃气管理站",type:" 建成",years:" 2008-2009"},
+ { id:"7",img:require('../../static/sucai/img_overview01.jpg'),name:"宁国禅寺", type:"方案", years: "2009"},
+ { id:"8",img:require('../../static/sucai/img_overview01.jpg'),name:"西溪湿地艺术村E酒店", type:" 方案 ", years: " 2007"},
+ { id:"9",img:require('../../static/sucai/img_overview01.jpg'),name:"吉山茶室", type:" 建成 ", years: "  2006-2008"},
+ { id:"10",img:require('../../static/sucai/img_overview01.jpg'),name:"江苏软件园吉山基地6号地块", type:" 建成", years: " 2006-2008"},
+ { id:"11",img:require('../../static/sucai/img_overview01.jpg'),name:"朱家角海事所", type:" 建成 ", years: "2004-2006"},
+ { id:"12",img:require('../../static/sucai/img_overview01.jpg'),name:"青浦私营企业协会办公与接待中心", type:" 建成", years: " 2003-2005"},
+ { id:"13",img:require('../../static/sucai/img_overview01.jpg'),name:"青浦夏雨幼儿园 ", type:"建成", years: " 2003-2005"},
+ { id:"14",img:require('../../static/sucai/img_overview01.jpg'),name:"东莞理工电子系馆 ", type:"建成 ", years: " 2002-2004"},
+ { id:"15",img:require('../../static/sucai/img_overview01.jpg'),name:"东莞理工文科楼", type:" 建成", years: " 2002-2004"},
+ { id:"16",img:require('../../static/sucai/img_overview01.jpg'),name:"东莞理工计算机系馆" ,type:" 建成", years: " 2002-2004"},
+ { id:"17",img:require('../../static/sucai/img_overview01.jpg'),name:"三连宅", type:" 建成", years: "2001-2003"},
+ { id:"18",img:require('../../static/sucai/img_overview01.jpg'),name:"吉山茶室", type:" 建成 ", years: "  2006-2008"},
+ { id:"19",img:require('../../static/sucai/img_overview01.jpg'),name:"江苏软件园吉山基地6号地块", type:" 建成", years: " 2006-2008"},
+ { id:"20",img:require('../../static/sucai/img_overview01.jpg'),name:"朱家角海事所", type:" 建成 ", years: "2004-2006"},
+ { id:"21",img:require('../../static/sucai/img_overview01.jpg'),name:"青浦私营企业协会办公与接待中心", type:" 建成", years: " 2003-2005"},
+ { id:"22",img:require('../../static/sucai/img_overview01.jpg'),name:"青浦夏雨幼儿园 ", type:"建成", years: " 2003-2005"},
+ { id:"23",img:require('../../static/sucai/img_overview01.jpg'),name:"东莞理工电子系馆 ", type:"建成 ", years: " 2002-2004"},
+ { id:"24",img:require('../../static/sucai/img_overview01.jpg'),name:"东莞理工文科楼", type:" 建成", years: " 2002-2004"},
+ { id:"25",img:require('../../static/sucai/img_overview01.jpg'),name:"东莞理工计算机系馆" ,type:" 建成", years: " 2002-2004"},
+ { id:"26",img:require('../../static/sucai/img_overview01.jpg'),name:"三连宅", type:" 建成", years: "2001-2003"}]
     }
   },
   methods:{
-    
+    intoWork:function(){
+      alert("12312312");
+    },
+    changeimg:function(work){
+          this.showimg=work.img;
+    }
     },
   mounted:function(){
-    
+    debugger
+    this.showimg=this.works[0].img;
   }
 }
 </script>
@@ -94,15 +93,17 @@ img{
    bottom: 0;
    margin: auto;
    position:absolute;
-   background-color:rgb(0, 255, 170);
-   color: #333;
+   /* background-color:rgb(0, 255, 170); */
+   color: #5b5b5b;
    width:  1200px;  
    height: 600px;
   } 
- .el-main { 
-  background-color: rgb(26, 105, 184); 
-   color: #333;
+.el-main { 
+  /* background-color: rgb(26, 105, 184);  */
+   color: #5b5b5b;
    line-height: 30px;
+   padding-top: 0cm;
+   margin-top: 30px;
   }
   
 
@@ -143,5 +144,12 @@ div.menu ul li a:active
     color: #cfdbe6; /* 文字颜色 */
     text-decoration: none; /* 不显示超链接下划线 */
 }
-
+.worksList{
+    list-style-type:none;
+  padding:0cm 0cm 0cm 0cm;
+  margin-top: 0cm;
+}
+.work:hover{
+    color:rgba(58, 57, 54, 0.698);
+}
 </style>
