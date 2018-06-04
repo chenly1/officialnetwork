@@ -92,7 +92,6 @@ exhibition:[{year:"2002年",content:'“都市营造”2002上海双年展，上
   props:["showYear"],
   methods:{
       changeMediaView:function(media){
-         debugger
          this.activeName=media.name;
          this.$emit('outActiveNameChange',media.name,'lalala');
       },
@@ -100,7 +99,6 @@ exhibition:[{year:"2002年",content:'“都市营造”2002上海双年展，上
         this.mediaImg=item.img;
       },
       getDetail:function(comm){
-        debugger
          window.open(window.location.origin + '/#/media/commentView/'+comm.id)
       }
     },

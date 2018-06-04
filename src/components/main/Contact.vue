@@ -3,7 +3,6 @@
   <el-container class="out-container">
     <el-aside ><img  :src="contact.img"/></el-aside>
     <el-main>
-
                      <el-row :class="{marginout:con.label=='工程联络信箱'}"  v-for="(con,index) in contact.context" :key="index" :gutter="10">
                           <el-col :span="8">{{con.label}}</el-col>
                           <el-col :span="16">{{con.text}}</el-col>

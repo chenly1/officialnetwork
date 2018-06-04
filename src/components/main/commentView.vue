@@ -4,8 +4,8 @@
     <el-main>
            <el-row :gutter="10">
                  <el-col :span="21" class="title">{{commView.title}}</el-col>
-                 <el-col :span="3"  class="author">{{commView.author}}</el-col>
-                 <div v-html="commView.content"></div>
+                 <el-col :span="3"  class="author" style="padding-left: 5px; padding-right: 20px;">{{commView.author}}</el-col>
+                 <div style="padding-left: 5px; padding-right: 20px;" v-html="commView.content"></div>
              </el-row>
     </el-main>
     <!-- <el-footer class="return">
@@ -32,9 +32,7 @@ export default {
   }
     },
   mounted:function(){
-    debugger
     alert(this.$route.params.id)
-  
   }
 }
 </script>
@@ -71,11 +69,25 @@ img{
     text-align: center
   }
   .author{
-    text-align: right
+    text-align: right;
+   
   
   }
   .retrun{
     text-align: left;
   }
-  
+  ::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 2px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+         /* border-radius: 10px;  */
+         -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        background: #535353;
+    }
+::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        /* border-radius: 10px;  */
+        background: #EDEDED;
+    }
 </style>

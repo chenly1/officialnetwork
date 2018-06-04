@@ -6,7 +6,9 @@ import Summary from '@/components/main/Summary'
 import Works from '@/components/main/Works'
 import Media from '@/components/main/Media'
 import Memo from '@/components/main/Memo'
+import Contact from '@/components/main/Contact'
 import bottomMenu from '@/components/main/bottomMenu'
+import commentView from '@/components/main/commentView'
 Vue.use(Router)
 
 export default new Router({
@@ -40,6 +42,16 @@ export default new Router({
       path: '/bottomMenu',
       name: 'bottomMenu',
       component: bottomMenu
+    },
+    {
+      path: '/media/commentView/:id',
+      name: 'commentView',
+      component: commentView
+    },
+    {
+      path: '/contact',
+      name: 'Contact',
+      component: Contact
     }
   ]
 })
