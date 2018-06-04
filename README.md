@@ -22,7 +22,7 @@ GET参数
 
 ```json
 {
-    "code"：2000,
+    "code":2000,
     "message":"操作完成",
     "data":{introduction:{"xxxxx" }, 
   }   
@@ -49,9 +49,9 @@ GET参数
 
 ```json
 {
-    code:2000,
-    message:"操作成功",
-    data:{
+    "code":2000,
+    "message":"操作成功",
+    "data":{
          partner:[[{name:"刘怡春",experience:[ "1969年出生于山东海阳",
                  "1991年获同济大学建筑系建筑学学士学位",
                  "1991～1994年就职于广州市设计院，任职助理建筑师",
@@ -93,9 +93,9 @@ GET参数
 
 ```json
 {
-    code:2000,
-    message:"操作成功",
-    data:{
+    "code":2000,
+    "message":"操作成功",
+    "data":{
       team:[{ title:"助理合伙人",
       member:[ { name:"高林",
       experience:['1982年出生于上海',
@@ -131,10 +131,10 @@ GET参数
 
 ```json
 {
-    code:2000,
-    message:"操作成功",
-    data:{
-        prize:[
+    "code":2000,
+    "message":"操作成功",
+    "data":{
+        "prize":[
           { year:"2012年",content:'“螺旋艺廊”获“2012 WA中国建筑奖”入围奖'} 
         ]
     }
@@ -165,9 +165,9 @@ GET参数
 
 ```json
 {
-    code:2000,
-    message:"操作成功",
-    data:{
+    "code":2000,
+    "message":"操作成功",
+    "data":{
     works:[ { id:"1",img:'xxx', name:"龙美术馆（西岸馆）",  type:"建成", years:"2011-2014"},
  {  id:"2",img:'xxx',name:"青浦青少年活动中心 " ,type:" 建成 ", years:"2009-2012"}]
     }
@@ -218,9 +218,9 @@ GET参数
 
 ```json
 {
-    code:2000,
-    message:"操作成功",
-    data:{
+    "code":2000,
+    "message":"操作成功",
+    "data":{
         yearList:[2010,2009,2008,2007,2006,2005,2004,2003,2002]
     }
 }
@@ -246,9 +246,9 @@ GET参数
 
 ```json
 {
-    code:2000,
-    message:"操作成功",
-    data:{
+    "code":2000,
+    "message":"操作成功",
+    "data":{
         publish:[
             {img:'xxx',content:"xxxx"},
 ]
@@ -277,9 +277,9 @@ GET参数
 
 ```json
 {
-    code:2000,
-    message:"操作成功",
-    data:{
+    "code":2000,
+    "message":"操作成功",
+    "data":{
         commentList:[
             {id:1,content:'xxx',img:'xxx'}
         ]
@@ -309,9 +309,9 @@ GET参数
 
 ```JSON
 {
-    code:2000,
-    message:"操作成功",
-    data:{
+    "code":2000,
+    "message":"操作成功",
+    "data":{
         comment:{
         title:"我是你哥",
         content:'xxxx',
@@ -341,9 +341,9 @@ GET参数
 
 ```json
 {
-    code:2000,
-    message:"操作成功",
-    data:{
+    "code":2000,
+    "message":"操作成功",
+    "data":{
         exhibitions:[{year:"2002年",content:'“都市营造”2002上海双年展，上海美术馆',img:'xxx'},
           {year:"2003年",content:' “那么，中国呢？”当代中国艺术展 ，法国巴黎蓬皮杜中心',img:'xxx'}]
     }
@@ -372,9 +372,9 @@ GET参数
 
 ```json
 {
-    code:2000,
-    message:"操作成功",
-    data:{
+    "code":2000,
+    "message":"操作成功",
+    "data":{
         yearList:[2010,2009,2008,2007,2006,2005,2004,2003,2002,2001]
     }
 }
@@ -402,10 +402,10 @@ GET参数
 
 ```json
 {
-    code:2000,
-    message:"操作成功",
-    data：{
-    memo：{
+    "code":2000,
+    "message":"操作成功",
+    "data":{
+    memo:{
     img:'xxx',content:"xxxxx"
 }
 }
@@ -432,9 +432,9 @@ GET参数
 
 ```json
 {
-    code:2000,
-    message:"操作成功",
-    data:{
+    "code":2000,
+    "message":"操作成功",
+    "data":{
         contact:{
             img:'xxxxxx',
          context:[{label:"地址",text:"上海市徐汇区龙腾大道2555号16栋"},
