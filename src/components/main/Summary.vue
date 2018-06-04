@@ -69,6 +69,7 @@
   </div>
 </template>
 <script>
+import getSummaryData from '../../axios/axios'
 export default {
   data () {
     return {
@@ -158,12 +159,23 @@ experience:["1987年出生于上海",
     }
   },
   methods:{
+     gainSummaryData:function(){
+
+     getSummaryData().then(function(){
+
+     }).cathch(()=>{
+
+     })
+     },
       changeSummaryView:function(summary){
          this.activeName=summary.name;
       }
     },
   mounted:function(){
     
+ this.gainSummaryData()
+
+
   }
 }
 </script>
@@ -178,15 +190,6 @@ img{
 .summary{
   position: relative;
 }
-/* .el-tabs .el-tabs--top{
-  height: 20px;
-}
-.el-header{
- height:30px;
-}
-.el-tab-pane{
-  height:1px
-} */
  .out-container {
    top: 10px;
    left:10px;

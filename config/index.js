@@ -3,14 +3,14 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+var proxyConfig = require('./proxyConfig')
 module.exports = {
   dev: {
 
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: proxyConfig.proxyList,
 
     // Various Dev Server settings
     host: '192.168.23.1', // can be overwritten by process.env.HOST
