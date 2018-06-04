@@ -22,10 +22,9 @@ GET参数
 
 ```json
 {
-    code：2000，
-    message:"操作完成",
-    data:{
-            introduction:{"xxxxx" }, 
+    "code"：2000,
+    "message":"操作完成",
+    "data":{introduction:{"xxxxx" }, 
   }   
 }
 ```
