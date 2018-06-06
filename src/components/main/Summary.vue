@@ -1,7 +1,7 @@
 <template>
   <div calss="summary">
    <el-container class="out-container">
-  <el-aside ><img  src="../../static/sucai/img_overview01.jpg"/></el-aside>
+  <el-aside ><img  :src="summaryImage"/></el-aside>
   <el-container>
     <el-header style="height:30px;"> 
      <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -14,10 +14,10 @@
     </div>
   </el-header> 
     <el-main>
-       <div v-show="activeName=='introduction'" v-html="summaryView.introduction.msg"></div>   
-       <div v-show="activeName=='partner'">
+       <div v-if="activeName=='introduction'" v-html="introduction"></div>   
+       <div v-if="activeName=='partner'">
               <ul class="partnerList">
-              <li   v-for="(part,index) in summaryView.partner" :key="index" >
+              <li   v-for="(part,index) in partner" :key="index" >
                  <el-row :gutter="10">
   <el-col :span="12">
      <div><b>{{part[0].name}}</b>
@@ -37,8 +37,8 @@
               </li>
           </ul>
        </div>
-       <div v-show="activeName=='team'">
-           <div calss="titleList" v-for=" team  in summaryView.team" :key="team.title">
+       <div v-if="activeName=='team'">
+           <div calss="titleList" v-for=" team  in team" :key="team.title">
               <b>{{team.title}}</b>
                <ul class="memberList" v-for="(member,index) in team.member" :key="index">
                  <li>
@@ -52,9 +52,9 @@
               </ul>  
            </div>
        </div>
-       <div v-show="activeName=='prize'">
+       <div v-if="activeName=='prize'">
           <ul class="prizeList">
-              <li v-for="(pr,index ) in summaryView.prize" :key="index" >
+              <li v-for="(pr,index ) in prize" :key="index" >
                 <el-row :gutter="10">
                  <el-col :span="3">{{pr.year}}</el-col>
                  <el-col :span="21">{{pr.content}}</el-col>
@@ -69,39 +69,48 @@
   </div>
 </template>
 <script>
-import getSummaryData from '../../axios/axios'
+// import getSummaryData from '../../axios/axios'
+import {getIntroduction,getPartner,getTeam ,getPrize} from '../../axios/axios'
 export default {
   data () {
     return {
       activeName: 'introduction',
+      summaryImage:"",
       summarys:[{id:1,label:"简介",name:"introduction"},
       {id:2,label:"合伙人",name:"partner"},
       {id:3,label:"团队",name:"team"},
       {id:4,label:"奖项",name:"prize"}],
-      summaryView:{introduction:{
-      msg:"大舍建筑设计事务所2001年成立于上海大舍建筑设计事务所2001年成立于上海大舍建筑设计事务所2001年成立于上海大舍建筑设计事务所2001年成立于上海大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年， 大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。" }, 
-      prize:[{ year:"2012年",content:'“螺旋艺廊”获“2012 WA中国建筑奖”入围奖'},
-      {year:"2011年",content:'被美国建筑师协会会刊《建筑实录》评选为年度全球10佳“设计先锋”(Design Vanguard 2011)。'},
-      {year:"2010年",content:'大舍建筑获法国AS.Architecture-Studio评选的“中国新锐建筑创作奖”'},
-      {year:"2010年",content:'“嘉定新城幼儿园”获第七届“远东建筑奖”佳作奖'},
-      {year:"2010年",content:'“嘉定新城幼儿园”获“2010 WA中国建筑奖”佳作奖'},
-      {year:"2010年",content:'“嘉定新城幼儿园”获第二届“中国建筑传媒奖”最佳建筑提名奖'},
-      {year:"2009年",content:'“江苏软件园吉山基地6号地块”获2009年美国《商业周刊》/《建筑实录》联合颁发的年度最佳商用建筑奖'},
-      {year:"2008年",content:'大舍建筑获首届“中国建筑传媒奖”青年建筑师（团队）入围奖'},
-      {year:"2006年",content:'“青浦夏雨幼儿园”获“2006 WA中国建筑奖”优胜奖'},
-      {year:"2006年",content:'“青浦私营企业协会办公与接待中心”获2006年美国《商业周刊》/《建筑实录》联合颁发的年度最佳商用建筑奖'},
-      {year:"2006年",content:'“青浦私营企业协会办公与接待中心”获“2006 WA中国建筑奖”佳作奖'},
-      {year:"2011年",content:'被美国建筑师协会会刊《建筑实录》评选为年度全球10佳“设计先锋”(Design Vanguard 2011)。'},
-      {year:"2010年",content:'大舍建筑获法国AS.Architecture-Studio评选的“中国新锐建筑创作奖”'},
-      {year:"2010年",content:'“嘉定新城幼儿园”获第七届“远东建筑奖”佳作奖'},
-      {year:"2010年",content:'“嘉定新城幼儿园”获“2010 WA中国建筑奖”佳作奖'},
-      {year:"2010年",content:'“嘉定新城幼儿园”获第二届“中国建筑传媒奖”最佳建筑提名奖'},
-      {year:"2009年",content:'“江苏软件园吉山基地6号地块”获2009年美国《商业周刊》/《建筑实录》联合颁发的年度最佳商用建筑奖'},
-      {year:"2008年",content:'大舍建筑获首届“中国建筑传媒奖”青年建筑师（团队）入围奖'},
-      {year:"2006年",content:'“青浦夏雨幼儿园”获“2006 WA中国建筑奖”优胜奖'},
-      {year:"2006年",content:'“青浦私营企业协会办公与接待中心”获2006年美国《商业周刊》/《建筑实录》联合颁发的年度最佳商用建筑奖'},
-      {year:"2006年",content:'“青浦私营企业协会办公与接待中心”获“2006 WA中国建筑奖”佳作奖'}],
-      partner:[[{name:"刘怡春",experience:[ "1969年出生于山东海阳",
+      introduction:"",
+      partner:"",
+      team:"",
+      prize:""
+    }
+  },
+  methods:{
+    getIntroduction:function(){
+    // let _that=this;
+    //  getIntroduction().then(function(response){
+    //    _that.introduction = response.data.data.introduction;
+    //    _that.introduction=''
+    //    _that.summaryImage=response.data.data.img;
+    //  }).catch((error)=>{
+    //     console.log(error)
+    //   })
+
+    this.introduction='大舍建筑设计事务所2001年成立于上海大舍建筑设计事务所2001年成立于上海大舍建筑设计事务所2001年成立于上海大舍建筑设计事务所2001年成立于上海大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年， 大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。';
+    this.summaryImage='https://www.baidu.com/img/bd_logo1.png';
+     },
+
+
+    getPartner:function(){
+    // let _that=this;
+    //  getPartner().then(function(response){
+    //    _that.partner = response.data.data.partner;
+    //    _that.summaryImage=response.data.data.img;
+    //  }).catch((error)=>{
+    //     console.log(error)
+    //   })
+    this.partner=[[{name:"刘怡春",experience:[ "1969年出生于山东海阳",
                  "1991年获同济大学建筑系建筑学学士学位",
                  "1991～1994年就职于广州市设计院，任职助理建筑师",
                    "1991～1994年就职于广州市设计院，任职助理建筑师",
@@ -125,8 +134,19 @@ export default {
                  "1997～2000年就职于同济大学建筑设计研究院，任建筑师、主任建筑师",
                  "2001年在上海与陈屹峰、庄慎共同创立大舍建筑设计事务所",
                  "2001年至今任大舍建筑设计事务所合伙人、主持建筑师"]}]
-],
-team:[{ title:"助理合伙人",
+];
+this.summaryImage="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1192114942,729047324&fm=27&gp=0.jpg";
+     },
+
+     getTeam:function(){
+    // let _that=this;
+    //  getTeam().then(function(response){
+    //    _that.team = response.data.data.team;
+    //    _that.summaryImage=response.data.data.img;
+    //  }).catch((error)=>{
+    //     console.log(error)
+    //   })
+    this.team=[{ title:"助理合伙人",
 member:[ { name:"高林",
  experience:['1982年出生于上海',
 '2006年毕业于同济大学建筑系，获建筑学学士学位',
@@ -154,26 +174,68 @@ member:[ { name:"孙苑婷",
 experience:["1987年出生于上海",
 "2009年毕业于上海商学院",
 "2009年西部计划志愿者，服务于云南省龙陵县妇联",
-"2010年加入大舍建筑设计事务所"]}]}]
-      }
-    }
-  },
-  methods:{
-     gainSummaryData:function(){
-
-     getSummaryData().then(function(){
-
-     }).cathch(()=>{
-
-     })
+"2010年加入大舍建筑设计事务所"]}]}];
+this.summaryImage="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3360966706,1552160805&fm=27&gp=0.jpg";
      },
-      changeSummaryView:function(summary){
+
+     getPrize:function(){
+    // let _that=this;
+    //  getPrize().then(function(response){
+    //    _that.prize= response.data.data.prize;
+    //    _that.summaryImage=response.data.data.img;
+    //  }).catch((error)=>{
+    //     console.log(error)
+    //   })
+    this.prize=[{ year:"2012年",content:'“螺旋艺廊”获“2012 WA中国建筑奖”入围奖'},
+      {year:"2011年",content:'被美国建筑师协会会刊《建筑实录》评选为年度全球10佳“设计先锋”(Design Vanguard 2011)。'},
+      {year:"2010年",content:'大舍建筑获法国AS.Architecture-Studio评选的“中国新锐建筑创作奖”'},
+      {year:"2010年",content:'“嘉定新城幼儿园”获第七届“远东建筑奖”佳作奖'},
+      {year:"2010年",content:'“嘉定新城幼儿园”获“2010 WA中国建筑奖”佳作奖'},
+      {year:"2010年",content:'“嘉定新城幼儿园”获第二届“中国建筑传媒奖”最佳建筑提名奖'},
+      {year:"2009年",content:'“江苏软件园吉山基地6号地块”获2009年美国《商业周刊》/《建筑实录》联合颁发的年度最佳商用建筑奖'},
+      {year:"2008年",content:'大舍建筑获首届“中国建筑传媒奖”青年建筑师（团队）入围奖'},
+      {year:"2006年",content:'“青浦夏雨幼儿园”获“2006 WA中国建筑奖”优胜奖'},
+      {year:"2006年",content:'“青浦私营企业协会办公与接待中心”获2006年美国《商业周刊》/《建筑实录》联合颁发的年度最佳商用建筑奖'},
+      {year:"2006年",content:'“青浦私营企业协会办公与接待中心”获“2006 WA中国建筑奖”佳作奖'},
+      {year:"2011年",content:'被美国建筑师协会会刊《建筑实录》评选为年度全球10佳“设计先锋”(Design Vanguard 2011)。'},
+      {year:"2010年",content:'大舍建筑获法国AS.Architecture-Studio评选的“中国新锐建筑创作奖”'},
+      {year:"2010年",content:'“嘉定新城幼儿园”获第七届“远东建筑奖”佳作奖'},
+      {year:"2010年",content:'“嘉定新城幼儿园”获“2010 WA中国建筑奖”佳作奖'},
+      {year:"2010年",content:'“嘉定新城幼儿园”获第二届“中国建筑传媒奖”最佳建筑提名奖'},
+      {year:"2009年",content:'“江苏软件园吉山基地6号地块”获2009年美国《商业周刊》/《建筑实录》联合颁发的年度最佳商用建筑奖'},
+      {year:"2008年",content:'大舍建筑获首届“中国建筑传媒奖”青年建筑师（团队）入围奖'},
+      {year:"2006年",content:'“青浦夏雨幼儿园”获“2006 WA中国建筑奖”优胜奖'},
+      {year:"2006年",content:'“青浦私营企业协会办公与接待中心”获2006年美国《商业周刊》/《建筑实录》联合颁发的年度最佳商用建筑奖'},
+      {year:"2006年",content:'“青浦私营企业协会办公与接待中心”获“2006 WA中国建筑奖”佳作奖'}];
+      this.summaryImage="https://ss0.baidu.com/73t1bjeh1BF3odCf/it/u=3778071464,1248453298&fm=85&s=E0B81CD75A1326D0C0B1A4250300F04A"
+     },
+
+
+
+
+ changeSummaryView:function(summary){
+       
+       switch(summary.id)
+             {
+               case 1:
+                this.getIntroduction();
+                break;
+              case 2:
+                this.getPartner();
+                break;
+              case 3:
+                this.getTeam();
+                break;
+                case 4:
+                this.getPrize();
+                 break;
+             }
          this.activeName=summary.name;
       }
     },
   mounted:function(){
     
- this.gainSummaryData()
+ this.getIntroduction();
 
 
   }

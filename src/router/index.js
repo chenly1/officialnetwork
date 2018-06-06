@@ -9,6 +9,7 @@ import Memo from '@/components/main/Memo'
 import Contact from '@/components/main/Contact'
 import bottomMenu from '@/components/main/bottomMenu'
 import commentView from '@/components/main/commentView'
+import workView from '@/components/main/workView'
 Vue.use(Router)
 
 export default new Router({
@@ -52,6 +53,11 @@ export default new Router({
       path: '/contact',
       name: 'Contact',
       component: Contact
+    },
+    {
+      path: '/works/workView/:id',
+      name: 'WorkView',
+      component: workView
     }
   ]
 })

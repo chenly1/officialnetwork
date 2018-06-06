@@ -17,6 +17,7 @@
   </div>
 </template>
 <script>
+import {getComment} from '../../axios/axios'
 export default {
   data () {
     return {
@@ -27,12 +28,17 @@ export default {
       }
   }},
   methods:{
-  goback:function(){
- this.$router.go(-1)
-  }
+ getComment:function(id){
+        let _that=this;
+    //  getComment().then(function(response){
+    //    _that.commView = response.data.data.comment;
+    //  }).catch((error)=>{
+    //     console.log(error)
+    //   })
+ }
     },
   mounted:function(){
-    alert(this.$route.params.id)
+    this.getComment(this.$route.params.id)
   }
 }
 </script>

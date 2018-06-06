@@ -1,7 +1,7 @@
 <template>
   <div calss="contact">
   <el-container class="out-container">
-    <el-aside ><img  :src="contact.img"/></el-aside>
+    <el-aside ><img  :src="contactImg"/></el-aside>
     <el-main>
                      <el-row :class="{marginout:con.label=='工程联络信箱'}"  v-for="(con,index) in contact.context" :key="index" :gutter="10">
                           <el-col :span="8">{{con.label}}</el-col>
@@ -14,39 +14,41 @@
   </div>
 </template>
 <script>
+import {getContact} from '../../axios/axios'
 export default {
   data () {
     return {
-      memoImg:"",
-      contact:{img:require('../../static/sucai/img_overview01.jpg'),
+      contactImg:"",
+      contact:{}
+    }
+  },
+  methods:{
+    getContact:function(){
+    //     let _that=this;
+    //  getContact().then(function(response){
+    //    _that.contact = response.data.data.contact;
+    //    _that.contactImg=_that.contact.img
+    //  }).catch((error)=>{
+    //     console.log(error)
+    //   })
+    this.contact={img:"http://img4.imgtn.bdimg.com/it/u=1989690979,2758703203&fm=27&gp=0.jpg",
       context:[{label:"地址",text:"上海市徐汇区龙腾大道2555号16栋"},
 {label:"邮编",text:"200232"},
 {label:"电话",text:"(8621) 64278928"},
 {label:"传真",text:"(8621) 64278928"},
 {label:"工程联络信箱",text:" deshaus@126.com"},
 {label:"商务媒体信箱",text:" info@deshaus.com"},
-{label:"招聘实习信箱",text:" deshaus.sh@163.com"}]
-
-      }
+{label:"招聘实习信箱",text:" deshaus.sh@163.com"}]}
+this.contactImg=this.contact.img
       
     }
-  },
-  props:["showYear"],
-  methods:{
-      changeimg:function(item){
-        this.mediaImg=item.img;
-      },
+  
     },
   mounted:function(){
-      // this.mediaImg=this.mediaView.publish[0].publishList[0].img;
+     this.getContact();
   },
   watch:{
-    showYear:{
-      immediate:true,
-      handler:function(){
-        console.log(this.showYear)//根据年份获取相应的记事内容
-     }
-    }
+
   }
 }
 </script>
@@ -61,15 +63,7 @@ img{
 .contact{
   position: relative;
 }
-/* .el-tabs .el-tabs--top{
-  height: 20px;
-}
-.el-header{
- height:30px;
-}
-.el-tab-pane{
-  height:1px
-} */
+
  .out-container {
    top: 10px;
    left:10px;

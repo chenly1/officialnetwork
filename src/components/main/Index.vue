@@ -2,30 +2,27 @@
   <div class="main">
 <el-container >
   <el-main>
-    <Summary v-show="show=='1'" calss="summary-outer"></Summary>
-    <Works  v-show="show=='2'"></Works>
+    <Summary v-if="show=='1'" calss="summary-outer"></Summary>
+    <Works  v-if="show=='2'"></Works>
     <Media v-show="show=='3'" ref="media" :showYear="chooseYear" @outActiveNameChange="outActiveNameChange"></Media>
     <Memo   v-show="show=='4'" ref="memo" :showYear="chooseYear" ></Memo>
-    <Contact v-show="show=='5'" ></Contact> 
+    <Contact v-if="show=='5'" ></Contact> 
   </el-main>
   <el-footer class="myfoot">
-  <el-row>
-  <el-col :span="12"> 
-    <div style="width:60px"></div>
-    <ul class="subnav02" v-show="(show==3&&activeName=='publish')||(show==4)">
+ 
+    <ul class="subnav02" v-if="(show==3&&activeName=='publish')||(show==4)">
             <li @click="changeYear(year)"  v-for="(year,index) in yearList" :key="index"><a href="javascript:void(0);">{{year}}</a></li></ul>
     <ul class="navigation">
-            <li  v-for="(item,index) in items "   :key="index" @click="changeView(item.id)" :class="{no_bg:index==items.length-1}"><a :class="{onlink:show==item.id}"  href="javascript:void(0);">{{item.name}}</a></li>
+            <li  v-for="(item,index) in items " :key="index" @click="changeView(item.id)" :class="{no_bg:index==items.length-1}"><a :class="{onlink:show==item.id}"  href="javascript:void(0);">{{item.name}}</a></li>
        </ul>
 
-  </el-col>
-</el-row>
 </el-footer>
 </el-container>
   </div>
 </template>
 
 <script>
+import getSummaryData from '../../axios/axios'
 import Summary from './Summary.vue';
 import Works from './Works.vue';
 import Media from './Media.vue';
@@ -50,7 +47,6 @@ export default {
   },
   methods:{
     changeView:function(id){
-      debugger
         this.show=id
          if(id==3){
          this.yearList=this.$refs.media.yearList;
@@ -73,7 +69,7 @@ export default {
   }
   },
    mounted:function(){
-    debugger
+    
     if(this.$route.params.show){
          this.show=this.$route.params.show
     }

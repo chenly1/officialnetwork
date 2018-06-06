@@ -4,7 +4,7 @@
   <el-aside ><img  :src="showimg"/></el-aside>
     <el-main>
          <ul class="worksList" >
-            <li @mouseenter="changeimg(work)"  @click="intoWork" class="work" v-for="(work,index) in works" :key="index">
+            <li @mouseenter="changeimg(work)"  @click="intoWork(work)" class="work" v-for="(work,index) in works" :key="index">
                  <el-row :gutter="10">
                  <el-col :span="11">{{work.name}}</el-col>
                  <el-col :span="3">{{work.type}}</el-col>
@@ -20,49 +20,41 @@
   </div>
 </template>
 <script>
+import {getWorks} from '../../axios/axios'
 export default {
   data () {
     return {
     showimg:"",
-    works:[ { id:"1",img:require('../../static/sucai/img_overview01.jpg'), name:"龙美术馆（西岸馆）",  type:"建成", years:" 2011-2014"},
- {  id:"2",img:require('../../static/sucai/img_overview02.jpg'),name:"青浦青少年活动中心 " ,type:" 建成 ", years:"2009-2012"},
- { id:"3",img:require('../../static/sucai/img_overview03.jpg'),name:"螺旋艺廊Ⅰ", type:" 建成", years :"2009-2011"},
- { id:"4",img:require('../../static/sucai/img_overview04.jpg'),name:"螺旋艺廊Ⅱ" ,type:"建成",  years:"2009-2011"},
- { id:"5",img:require('../../static/sucai/img_overview01.jpg'),name:"嘉定新城幼儿园" ,type:" 建成",years:" 2008-2010"},
- { id:"6",img:require('../../static/sucai/img_overview01.jpg'),name:"嘉定新城区燃气管理站",type:" 建成",years:" 2008-2009"},
- { id:"7",img:require('../../static/sucai/img_overview01.jpg'),name:"宁国禅寺", type:"方案", years: "2009"},
- { id:"8",img:require('../../static/sucai/img_overview01.jpg'),name:"西溪湿地艺术村E酒店", type:" 方案 ", years: " 2007"},
- { id:"9",img:require('../../static/sucai/img_overview01.jpg'),name:"吉山茶室", type:" 建成 ", years: "  2006-2008"},
- { id:"10",img:require('../../static/sucai/img_overview01.jpg'),name:"江苏软件园吉山基地6号地块", type:" 建成", years: " 2006-2008"},
- { id:"11",img:require('../../static/sucai/img_overview01.jpg'),name:"朱家角海事所", type:" 建成 ", years: "2004-2006"},
- { id:"12",img:require('../../static/sucai/img_overview01.jpg'),name:"青浦私营企业协会办公与接待中心", type:" 建成", years: " 2003-2005"},
- { id:"13",img:require('../../static/sucai/img_overview01.jpg'),name:"青浦夏雨幼儿园 ", type:"建成", years: " 2003-2005"},
- { id:"14",img:require('../../static/sucai/img_overview01.jpg'),name:"东莞理工电子系馆 ", type:"建成 ", years: " 2002-2004"},
- { id:"15",img:require('../../static/sucai/img_overview01.jpg'),name:"东莞理工文科楼", type:" 建成", years: " 2002-2004"},
- { id:"16",img:require('../../static/sucai/img_overview01.jpg'),name:"东莞理工计算机系馆" ,type:" 建成", years: " 2002-2004"},
- { id:"17",img:require('../../static/sucai/img_overview01.jpg'),name:"三连宅", type:" 建成", years: "2001-2003"},
- { id:"18",img:require('../../static/sucai/img_overview01.jpg'),name:"吉山茶室", type:" 建成 ", years: "  2006-2008"},
- { id:"19",img:require('../../static/sucai/img_overview01.jpg'),name:"江苏软件园吉山基地6号地块", type:" 建成", years: " 2006-2008"},
- { id:"20",img:require('../../static/sucai/img_overview01.jpg'),name:"朱家角海事所", type:" 建成 ", years: "2004-2006"},
- { id:"21",img:require('../../static/sucai/img_overview01.jpg'),name:"青浦私营企业协会办公与接待中心", type:" 建成", years: " 2003-2005"},
- { id:"22",img:require('../../static/sucai/img_overview01.jpg'),name:"青浦夏雨幼儿园 ", type:"建成", years: " 2003-2005"},
- { id:"23",img:require('../../static/sucai/img_overview01.jpg'),name:"东莞理工电子系馆 ", type:"建成 ", years: " 2002-2004"},
- { id:"24",img:require('../../static/sucai/img_overview01.jpg'),name:"东莞理工文科楼", type:" 建成", years: " 2002-2004"},
- { id:"25",img:require('../../static/sucai/img_overview01.jpg'),name:"东莞理工计算机系馆" ,type:" 建成", years: " 2002-2004"},
- { id:"26",img:require('../../static/sucai/img_overview01.jpg'),name:"三连宅", type:" 建成", years: "2001-2003"}]
+    works:""
     }
   },
   methods:{
-    intoWork:function(){
-      alert("12312312");
+    getWorks:function(){
+    // let _that=this;
+    //  getWorks().then(function(response){
+    //    _that.works = response.data.data.works;
+    //    _that.showimg=response.data.data.works[0].img;
+    //  }).catch((error)=>{
+    //     console.log(error)
+    //   })
+    
+     this.works=[ { id:"1",img:"https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=1335141240,1899156428&fm=202", name:"龙美术馆（西岸馆）",  type:"建成", years:" 2011-2014"},
+ {  id:"2",img:"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2923094007,932318355&fm=200&gp=0.jpg",name:"青浦青少年活动中心 " ,type:" 建成 ", years:"2009-2012"},
+ { id:"3",img:"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=227359244,400191988&fm=200&gp=0.jpg",name:"螺旋艺廊Ⅰ", type:" 建成", years :"2009-2011"},
+ { id:"4",img:"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3010670357,2744132745&fm=200&gp=0.jpg",name:"螺旋艺廊Ⅱ" ,type:"建成",  years:"2009-2011"},
+ { id:"5",img:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=627278402,3014135081&fm=200&gp=0.jpg",name:"嘉定新城幼儿园" ,type:" 建成",years:" 2008-2010"},
+ { id:"6",img:"https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1592363682,600312340&fm=58&bpow=600&bpoh=750",name:"嘉定新城区燃气管理站",type:" 建成",years:" 2008-2009"}]
+ this.showimg=this.works[0].img;
+    },
+    intoWork:function(work){
+       this.$router.push({ path: 'works/workView/'+work.id })
     },
     changeimg:function(work){
           this.showimg=work.img;
     }
     },
   mounted:function(){
-    debugger
-    this.showimg=this.works[0].img;
+      this.getWorks();
   }
 }
 </script>
