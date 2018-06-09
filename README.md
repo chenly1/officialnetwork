@@ -53,7 +53,7 @@ GET参数
     "code":2000,
     "message":"操作成功",
     "data":{
-         partner:[[{name:"刘怡春",experience:[ "1969年出生于山东海阳",
+         "partner":[[{name:"刘怡春",experience:[ "1969年出生于山东海阳",
                  "1991年获同济大学建筑系建筑学学士学位",
                  "1991～1994年就职于广州市设计院，任职助理建筑师",
                  "1991～1994年就职于广州市设计院，任职助理建筑师",
@@ -70,7 +70,7 @@ GET参数
                  "1997～2000年就职于同济大学建筑设计研究院，任建筑师、主任建筑师",
                  "2001年在上海与陈屹峰、庄慎共同创立大舍建筑设计事务所", //合伙人每两个人为一组
                  "2001年至今任大舍建筑设计事务所合伙人、主持建筑师"]}]],  //根据什么两个人分一组待定
-         img:"xxx"        
+         "img":"xxx"        
     }
 }
 ```
@@ -98,18 +98,18 @@ GET参数
     "code":2000,
     "message":"操作成功",
     "data":{
-      team:[{ title:"助理合伙人",
-      member:[ { name:"高林",
-      experience:['1982年出生于上海',
+      "team":[{ title:"助理合伙人",
+      "member":[ { name:"高林",
+      "experience":['1982年出生于上海',
    '2006年毕业于同济大学建筑系，获建筑学学士学位',
    '2007年大学生志愿者，服务于西藏建设厅城建规划设计处',
    '2008年加入大舍建筑设计事务所']},
-		{name:"王龙海",
-experience:["1983年出生于河北",
+		{"name":"王龙海",
+"experience":["1983年出生于河北",
 "2007年毕业于同济大学建筑系，获建筑学学士学位",
 "2007年加入大舍建筑设计事务所"]}
 		]}],
-    img:"xxx"
+    "img":"xxx"
     }
 }
 ```
@@ -138,7 +138,7 @@ GET参数
     "message":"操作成功",
     "data":{
         "prize":[
-          { year:"2012年",content:'“螺旋艺廊”获“2012 WA中国建筑奖”入围奖'} 
+          { "year":"2012年",content:'“螺旋艺廊”获“2012 WA中国建筑奖”入围奖'} 
         ],
         "img":"xxx"
     }
@@ -172,7 +172,7 @@ GET参数
     "code":2000,
     "message":"操作成功",
     "data":{
-    works:[ { id:"1",img:'xxx', name:"龙美术馆（西岸馆）",  type:"建成", years:"2011-2014"},
+    "works":[ { id:"1",img:'xxx', name:"龙美术馆（西岸馆）",  type:"建成", years:"2011-2014"},
  {  id:"2",img:'xxx',name:"青浦青少年活动中心 " ,type:" 建成 ", years:"2009-2012"}]
     }
 } 
@@ -225,7 +225,7 @@ GET参数
     "code":2000,
     "message":"操作成功",
     "data":{
-        yearList:[2010,2009,2008,2007,2006,2005,2004,2003,2002]
+        "yearList":[2010,2009,2008,2007,2006,2005,2004,2003,2002]
     }
 }
 ```
@@ -253,8 +253,8 @@ GET参数
     "code":2000,
     "message":"操作成功",
     "data":{
-        publish:[
-            {img:'xxx',content:"xxxx"},
+        "publish":[
+            {"img":'xxx',content:"xxxx"},
 ]
         }
     }
@@ -284,8 +284,8 @@ GET参数
     "code":2000,
     "message":"操作成功",
     "data":{
-        commentList:[
-            {id:1,content:'xxx',img:'xxx'}
+        "commentList":[
+            {"id":1,"content":'xxx',"img":'xxx'}
         ]
     }
 }
@@ -316,10 +316,10 @@ GET参数
     "code":2000,
     "message":"操作成功",
     "data":{
-        comment:{
-        title:"我是你哥",
-        content:'xxxx',
-        author:"王芳济"
+        "comment":{
+        "title":"我是你哥",
+        "content":'xxxx',
+        "author":"王芳济"
         }
     }
 }
@@ -348,8 +348,8 @@ GET参数
     "code":2000,
     "message":"操作成功",
     "data":{
-        exhibitions:[{year:"2002年",content:'“都市营造”2002上海双年展，上海美术馆',img:'xxx'},
-          {year:"2003年",content:' “那么，中国呢？”当代中国艺术展 ，法国巴黎蓬皮杜中心',img:'xxx'}]
+        "exhibitions":[{"year":"2002年","content":'“都市营造”2002上海双年展，上海美术馆',"img":'xxx'},
+          {"year":"2003年","content":' “那么，中国呢？”当代中国艺术展 ，法国巴黎蓬皮杜中心',"img":'xxx'}]
     }
 }
 ```
@@ -379,7 +379,7 @@ GET参数
     "code":2000,
     "message":"操作成功",
     "data":{
-        yearList:[2010,2009,2008,2007,2006,2005,2004,2003,2002,2001]
+        "yearList":[2010,2009,2008,2007,2006,2005,2004,2003,2002,2001]
     }
 }
 ```
@@ -409,8 +409,8 @@ GET参数
     "code":2000,
     "message":"操作成功",
     "data":{
-    memo:{
-    img:'xxx',content:"xxxxx"
+    "memo":{
+    "img":'xxx',content:"xxxxx"
 }
 }
 }
@@ -439,15 +439,15 @@ GET参数
     "code":2000,
     "message":"操作成功",
     "data":{
-        contact:{
-            img:'xxxxxx',
-         context:[{label:"地址",text:"上海市徐汇区龙腾大道2555号16栋"},
-                  {label:"邮编",text:"200232"},
-                  {label:"电话",text:"(8621) 64278928"},
-                  {label:"传真",text:"(8621) 64278928"},
-                  {label:"工程联络信箱",text:" deshaus@126.com"},
-                  {label:"商务媒体信箱",text:" info@deshaus.com"},
-                  {label:"招聘实习信箱",text:" deshaus.sh@163.com"}]
+        "contact":{
+            "img":'xxxxxx',
+         "contex"t:[{"label":"地址","text":"上海市徐汇区龙腾大道2555号16栋"},
+                  {"label":"邮编","text":"200232"},
+                  {"label":"电话","text":"(8621) 64278928"},
+                  {"label":"传真","text":"(8621) 64278928"},
+                  {"label":"工程联络信箱","text":" deshaus@126.com"},
+                  {"label":"商务媒体信箱","text":" info@deshaus.com"},
+                  {"label":"招聘实习信箱","text":" deshaus.sh@163.com"}]
         }
     }
 }
