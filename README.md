@@ -234,7 +234,7 @@ GET参数
 
 |            URI            | METHOD |
 | :-----------------------: | :----: |
-| /api/meida/publish/{year} |  GET   |
+| /api/media/publish/{year} |  GET   |
 
 **参数**
 
