@@ -172,8 +172,8 @@ GET参数
     "code":2000,
     "message":"操作成功",
     "data":{
-    "works":[ { id:"1",img:'xxx', name:"龙美术馆（西岸馆）",  type:"建成", years:"2011-2014"},
- {  id:"2",img:'xxx',name:"青浦青少年活动中心 " ,type:" 建成 ", years:"2009-2012"}]
+    "works":[ { "id":"1",img:'xxx', "name":"龙美术馆（西岸馆）",  "type":"建成", "years":"2011-2014"},
+ {  id:"2","img":'xxx',"name":"青浦青少年活动中心 " ,"type":" 建成 ", "years":"2009-2012"}]
     }
 } 
 ```
