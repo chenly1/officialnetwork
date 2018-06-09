@@ -4,9 +4,6 @@
   <el-aside ><img  :src="summaryImage"/></el-aside>
   <el-container>
     <el-header style="height:30px;"> 
-     <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane v-for="summary in  summarys" :key="summary.id"     :label="summary.label" :name="summary.name"></el-tab-pane>
-      </el-tabs>  -->
        <div class="menu">
         <ul>
             <li @click="changeSummaryView(summary)" v-for="summary in summarys" :key="summary.id"><a href="javascript:void(0);">{{summary.label}}</a></li>
@@ -14,7 +11,7 @@
     </div>
   </el-header> 
     <el-main>
-       <div v-if="activeName=='introduction'" v-html="introduction"></div>   
+       <div v-if="activeName=='introduction'" v-html="introduction" class="introduction"></div>   
        <div v-if="activeName=='partner'">
               <ul class="partnerList">
               <li   v-for="(part,index) in partner" :key="index" >
@@ -260,16 +257,16 @@ img{
    margin: auto;
    position:absolute;
    /* background-color:rgb(0, 255, 170); */
-   color: #333;
-   width:  1200px;  
-   height: 600px;
+    width:  63%;  
+   height: 60%;
   } 
  .el-main { 
   /* background-color: rgb(26, 105, 184);  */
-   color: #333;
    line-height: 30px;
    padding-top: 0cm;
+
   }
+
   
 
   /* 所有class为menu的div中的ul样式 */
@@ -291,7 +288,7 @@ div.menu ul li a, div.menu ul li a:visited
     color: #df2e2e; /* 文字颜色 */
     display: block; /* 此元素将显示为块级元素，此元素前后会带有换行符 */
     line-height: 1.35em; /* 行高 */
-    padding: 4px 20px; /* 内部填充的距离 */
+    padding-right: 20px;
     text-decoration: none; /* 不显示超链接下划线 */
     white-space: nowrap; /* 对于文本内的空白处，不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。 */
 }

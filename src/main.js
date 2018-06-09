@@ -4,7 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
+import 'lib-flexible'
 import 'element-ui/lib/theme-chalk/index.css';
+import './assets/theme/element-theme/index.css' // element-theme-#82c341
+import 'font-awesome/css/font-awesome.min.css' // Font Awesome icon图标库
 
 Vue.use(ElementUI);
 

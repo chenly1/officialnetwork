@@ -92,13 +92,13 @@ img{
    margin: auto;
    position:absolute;
    /* background-color:rgb(0, 255, 170); */
-   color: #333;
-   width:  1200px;  
-   height: 600px;
+   /* color: #333; */
+   width:  63%;  
+   height: 60%;
   } 
  .el-main { 
   /* background-color: rgb(26, 105, 184);  */
-   color: #333;
+   /* color: #333; */
    line-height: 30px;
    padding-top: 0cm;
    margin-top: 30px;

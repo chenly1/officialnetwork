@@ -86,13 +86,13 @@ img{
    margin: auto;
    position:absolute;
    /* background-color:rgb(0, 255, 170); */
-   color: #5b5b5b;
-   width:  1200px;  
-   height: 600px;
+   /* color: #5b5b5b; */
+   width:  63%;  
+   height: 60%;
   } 
 .el-main { 
   /* background-color: rgb(26, 105, 184);  */
-   color: #5b5b5b;
+   /* color: #5b5b5b; */
    line-height: 30px;
    padding-top: 0cm;
    margin-top: 30px;
@@ -142,6 +142,6 @@ div.menu ul li a:active
   margin-top: 0cm;
 }
 .work:hover{
-    color:rgba(58, 57, 54, 0.698);
+    color:rgb(44, 43, 43);
 }
 </style>

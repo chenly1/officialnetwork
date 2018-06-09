@@ -197,13 +197,13 @@ img{
    margin: auto;
    position:absolute;
    /* background-color:rgb(0, 255, 170); */
-   color: #333;
-   width:  1200px;  
-   height: 600px;
+   /* color: #333; */
+   width:  63%;  
+   height: 60%;
   } 
  .el-main { 
   /* background-color: rgb(26, 105, 184);  */
-   color: #333;
+   /* color: #333; */
    line-height: 30px;
    padding-top: 0cm;
   }
@@ -228,7 +228,7 @@ div.menu ul li a, div.menu ul li a:visited
     color: #df2e2e; /* 文字颜色 */
     display: block; /* 此元素将显示为块级元素，此元素前后会带有换行符 */
     line-height: 1.35em; /* 行高 */
-    padding: 4px 20px; /* 内部填充的距离 */
+    padding-right: 20px;
     text-decoration: none; /* 不显示超链接下划线 */
     white-space: nowrap; /* 对于文本内的空白处，不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。 */
 }
@@ -281,7 +281,7 @@ list-style-type:none;
 }
 
 .pub:hover{
-    color:rgba(58, 57, 54, 0.698);
+    color:rgb(44, 43, 43);
 }
 .commentList{
    list-style-type:none;
@@ -289,7 +289,7 @@ list-style-type:none;
   margin-top: 0cm;
 }
 .comm:hover{
-  color:rgba(58, 57, 54, 0.698);
+  color:rgb(44, 43, 43);
 }
 .exhtList{
      list-style-type:none;

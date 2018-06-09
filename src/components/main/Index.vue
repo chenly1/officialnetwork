@@ -2,21 +2,25 @@
   <div class="main">
 <el-container >
   <el-main>
-    <Summary v-if="show=='1'" calss="summary-outer"></Summary>
+    <div class="top">
+    <Summary v-if="show=='1'" calss="summary-outer"></Summary> 
     <Works  v-if="show=='2'"></Works>
     <Media v-show="show=='3'" ref="media" :showYear="chooseYear" @outActiveNameChange="outActiveNameChange"></Media>
     <Memo   v-show="show=='4'" ref="memo" :showYear="chooseYear" ></Memo>
-    <Contact v-if="show=='5'" ></Contact> 
-  </el-main>
-  <el-footer class="myfoot">
- 
-    <ul class="subnav02" v-if="(show==3&&activeName=='publish')||(show==4)">
-            <li @click="changeYear(year)"  v-for="(year,index) in yearList" :key="index"><a href="javascript:void(0);">{{year}}</a></li></ul>
-    <ul class="navigation">
+    <Contact v-if="show=='5'" ></Contact>  
+    </div>
+      <div class="bottom">
+       <div class="ss02">
+      <ul class="subnav02" v-if="(show==3&&activeName=='publish')||(show==4)">
+            <li @click="changeYear(year)"  v-for="(year,index) in yearList" :key="index"><a href="javascript:void(0);">{{year}}</a></li>
+      </ul>
+    </div>        
+    <div class="ss01"> <ul class="navigation">
             <li  v-for="(item,index) in items " :key="index" @click="changeView(item.id)" :class="{no_bg:index==items.length-1}"><a :class="{onlink:show==item.id}"  href="javascript:void(0);">{{item.name}}</a></li>
        </ul>
-
-</el-footer>
+    </div> 
+    </div>
+  </el-main>
 </el-container>
   </div>
 </template>
@@ -84,23 +88,26 @@ margin:50px 50px 50px 50px;
 padding:50px 50px 50px 50px;
 
 }
-
+.top{
+  /* background-color: aqua;  */
+  height: 95%;
+  width: auto;
+}
+.bottom{
+   /* background-color:palegreen; */
+  height: 5%;
+  width: auto; 
+  margin-left: 17%; 
+  margin-right: 18%;  
+}
   
   .el-main {
     /* background-color: #E9EEF3;  */
     height: 870px;
-    color: #333;
+    /* color: #333; */
     /* line-height: 160px; */
   }
-  .myfoot{
-    margin-left: 323px;
-    margin-right: 350px;
-  }
 
-
-
-  body {FONT-SIZE: 12px; BaCKGROUND: #fff; COLOR: #5b5b5b; FONT-FaMILY: "Lucida Sans Unicode", "Lucida Grande", sans-serif; POSITION: relative; HEIGHT: 100%}
-html {HEIGHT: 100%}
 ol, ul {PaDDING-RIGHT: 0px; PaDDING-LEFT: 0px; PaDDING-BOTTOM: 0px; MaRGIN: 0px; PaDDING-TOP: 0px; liST-STYLE-TYPE: none}
 a {CURSOR: pointer; TEXT-DECORaTION: none}
 a:link {COLOR: #888}
@@ -109,20 +116,24 @@ a:active {COLOR: #cc0000; TEXT-DECORaTION: none}
 a:actived {COLOR: #cc0000; TEXT-DECORaTION: none}
 a:hover {COLOR: #cc0000; TEXT-DECORaTION: none}
 a.onlink {COLOR: #cc0000}
-.navigation {RIGHT: 10px; BOTTOM: 10px; POSITION: absolute}
+.navigation {RIGHT: 10px; BOTTOM: 10px; }
 .navigation li {PaDDING-RIGHT: 10px; PaDDING-LEFT: 10px; BaCKGROUND: url(http://www.deshaus.com/images/bg_nav.gif) no-repeat right 50%; FLOaT: left; PaDDING-BOTTOM: 0px; MaRGIN: 0px; PaDDING-TOP: 0px}
 .navigation li a:hover {COLOR: #cc0000; TEXT-DECORaTION: none}
 .navigation li.no_bg {PaDDING-RIGHT: 0px; BaCKGROUND: none transparent scroll repeat 0% 0%}
-ul.subnav02 {LEFT: 10px; BOTTOM: 10px; POSITION: absolute}
-ul.subnav02 li {FONT-SIZE: 17px; FLOaT: left}
+ul.subnav02 {LEFT: 10px; BOTTOM: 10px;}
+ul.subnav02 li { FLOaT: left}
 ul.subnav02 li a {PaDDING-RIGHT: 10px}
 
+.ss02{
+  float: left;
+ 
+}
 
+.ss01{
+  float: right;
+ 
+}
 
-
-.subnav03 {right: 0px; POSITION: absolute; TOP: 430px}
-.subnav03 a {float: left; height:16px; line-height:16px; MaRGIN-RIGHT: 10px}
-.subnav03 a.a3{ margin-right:0; padding-left:10px; background:url(http://www.deshaus.com/images/bg_nav.gif) left center no-repeat;}
 
 
 </style>
