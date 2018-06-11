@@ -19,10 +19,7 @@
           <a class="a1" href="worktext17.html">返回</a> 
                <div class="menu">
         <ul class="subnav02">
-            <li><a href="javascript:void(0);">1</a></li>
-            <li><a href="javascript:void(0);">2</a></li>
-            <li><a href="javascript:void(0);">3</a></li>
-            <li><a href="javascript:void(0);">4</a></li>
+            <li v-for="(img,index) in work.img" @click="changeimg(img)"   :key="index"><a href="javascript:void(0);">index</a></li>
         </ul>
     </div>
          <a class="a3" href="works.html">简述</a>
@@ -52,18 +49,26 @@ export default {
     }
   },
   methods:{
-    getWorks:function(){
+    getWork:function(id){
+       let _that=this;
+       getWork(id).then(function(response){
+         _that.work=response.data.data.work
+         _that.showimg=work.img[0];
+       }).catch((error)=>{
+          console.log(error)
+       })
 
     },
     intoWork:function(){
-      alert("12312312");
+       this.$route.go(-1)
     },
-    changeimg:function(work){
+    changeimg:function(img){
           this.showimg=work.img;
     }
     },
   mounted:function(){
-      // this.getWorks();
+      this.$route.param.id
+      this.getWork(id)
   }
 }
 </script>

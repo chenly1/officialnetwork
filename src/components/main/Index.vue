@@ -12,7 +12,7 @@
       <div class="bottom">
        <div class="ss02">
       <ul class="subnav02" v-if="(show==3&&activeName=='publish')||(show==4)">
-            <li @click="changeYear(year)"  v-for="(year,index) in yearList" :key="index"><a href="javascript:void(0);">{{year}}</a></li>
+            <li @click="changeYear(year)"  v-for="(year,index) in yearList" :key="index"><a href="javascript:void(0);" :class="{onlink:chooseYear==year}">{{year}}</a></li>
       </ul>
     </div>        
     <div class="ss01"> <ul class="navigation">
@@ -38,15 +38,14 @@ export default {
   data () {
     return {
       activeName:"",
-      chooseYear:"2000",
+      chooseYear:"",
       yearList:[],
       show:'1',
       items:[{id:1,name:"概述"},
       {id:2,name:"作品"},
       {id:3,name:"媒体"},
       {id:4,name:"记事"},
-      {id:5,name:"联系"}],
-      msg: 'Welcome to Your Vue.js App'
+      {id:5,name:"联系"}]
     }
   },
   methods:{
@@ -65,15 +64,12 @@ export default {
     outActiveNameChange:function(data){
       this.activeName=data;
     },
-    itemClick:function(){
-      alert("12313")
-    },
+
   changeYear:function(year){
    this.chooseYear=year;
   }
   },
    mounted:function(){
-    
     if(this.$route.params.show){
          this.show=this.$route.params.show
     }
@@ -97,7 +93,7 @@ padding:50px 50px 50px 50px;
    /* background-color:palegreen; */
   height: 5%;
   width: auto; 
-  margin-left: 17%; 
+  margin-left: 18%; 
   margin-right: 18%;  
 }
   

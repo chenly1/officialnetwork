@@ -85,130 +85,45 @@ export default {
   },
   methods:{
     getIntroduction:function(){
-    // let _that=this;
-    //  getIntroduction().then(function(response){
-    //    _that.introduction = response.data.data.introduction;
-    //    _that.introduction=''
-    //    _that.summaryImage=response.data.data.img;
-    //  }).catch((error)=>{
-    //     console.log(error)
-    //   })
-
-    this.introduction='大舍建筑设计事务所2001年成立于上海大舍建筑设计事务所2001年成立于上海大舍建筑设计事务所2001年成立于上海大舍建筑设计事务所2001年成立于上海大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年， 大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。大舍建筑设计事务所2001年成立于上海，是中华人民共和国建设部核准的甲级建筑设计事务所。主持建筑师柳亦春和陈屹峰分别出生于1969年和1972年，均毕业于同济大学建筑系。';
-    this.summaryImage='https://www.baidu.com/img/bd_logo1.png';
+    let _that=this;
+     getIntroduction().then(function(response){
+       _that.introduction = response.data.data.introduction;
+       _that.summaryImage=response.data.data.img;
+     }).catch((error)=>{
+        console.log(error)
+      })
      },
 
 
     getPartner:function(){
-    // let _that=this;
-    //  getPartner().then(function(response){
-    //    _that.partner = response.data.data.partner;
-    //    _that.summaryImage=response.data.data.img;
-    //  }).catch((error)=>{
-    //     console.log(error)
-    //   })
-    this.partner=[[{name:"刘怡春",experience:[ "1969年出生于山东海阳",
-                 "1991年获同济大学建筑系建筑学学士学位",
-                 "1991～1994年就职于广州市设计院，任职助理建筑师",
-                   "1991～1994年就职于广州市设计院，任职助理建筑师",
-                     "1991～1994年就职于广州市设计院，任职助理建筑师",
-                       "1991～1994年就职于广州市设计院，任职助理建筑师",
-                 "1997年获同济大学建筑系建筑学硕士学位",
-                 "1997～2000年就职于同济大学建筑设计研究院，任建筑师、主任建筑师",
-                 "2001年在上海与陈屹峰、庄慎共同创立大舍建筑设计事务所",
-                 "2001年至今任大舍建筑设计事务所合伙人、主持建筑师"]},
-                {name:"陈启峰",experience:[ "1969年出生于山东海阳",
-                 "1991年获同济大学建筑系建筑学学士学位",
-                 "1991～1994年就职于广州市设计院，任职助理建筑师",
-                 "1997年获同济大学建筑系建筑学硕士学位",
-                 "1997～2000年就职于同济大学建筑设计研究院，任建筑师、主任建筑师",
-                 "2001年在上海与陈屹峰、庄慎共同创立大舍建筑设计事务所",
-                 "2001年至今任大舍建筑设计事务所合伙人、主持建筑师"]}],
-                 [{name:"马德华",experience:[ "1969年出生于山东海阳",
-                 "1991年获同济大学建筑系建筑学学士学位",
-                 "1991～1994年就职于广州市设计院，任职助理建筑师",
-                 "1997年获同济大学建筑系建筑学硕士学位",
-                 "1997～2000年就职于同济大学建筑设计研究院，任建筑师、主任建筑师",
-                 "2001年在上海与陈屹峰、庄慎共同创立大舍建筑设计事务所",
-                 "2001年至今任大舍建筑设计事务所合伙人、主持建筑师"]}]
-];
-this.summaryImage="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1192114942,729047324&fm=27&gp=0.jpg";
+    let _that=this;
+     getPartner().then(function(response){
+       _that.partner = response.data.data.partner;
+       _that.summaryImage=response.data.data.img;
+     }).catch((error)=>{
+        console.log(error)
+      })
      },
 
      getTeam:function(){
-    // let _that=this;
-    //  getTeam().then(function(response){
-    //    _that.team = response.data.data.team;
-    //    _that.summaryImage=response.data.data.img;
-    //  }).catch((error)=>{
-    //     console.log(error)
-    //   })
-    this.team=[{ title:"助理合伙人",
-member:[ { name:"高林",
- experience:['1982年出生于上海',
-'2006年毕业于同济大学建筑系，获建筑学学士学位',
-'2007年大学生志愿者，服务于西藏建设厅城建规划设计处',
-'2008年加入大舍建筑设计事务所'
-			 ]},
-		{name:"王龙海",
-experience:["1983年出生于河北",
-"2007年毕业于同济大学建筑系，获建筑学学士学位",
-"2007年加入大舍建筑设计事务所"]}
-		]},{
-title:"建筑师（按入职先后顺序排列）",
-member:[{name:"李珺",
-experience:["1983年出生于上海",
-"2007年毕业于同济大学建筑系，获建筑学学士学位",
-"2007年五合国际 助理建筑师",
-"2008年加入大舍建筑设计事务所"]},
-		{name:"宋崇芳",
-experience:[ "1987年出生于江西",
- "2010年毕业于中国美术学院，获建筑学学士学位",
-"2010年加入大舍建筑设计事务所"]}
-]},
- {title:"行政管理",
-member:[ { name:"孙苑婷",
-experience:["1987年出生于上海",
-"2009年毕业于上海商学院",
-"2009年西部计划志愿者，服务于云南省龙陵县妇联",
-"2010年加入大舍建筑设计事务所"]}]}];
-this.summaryImage="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3360966706,1552160805&fm=27&gp=0.jpg";
+    let _that=this;
+     getTeam().then(function(response){
+       _that.team = response.data.data.team;
+       _that.summaryImage=response.data.data.img;
+     }).catch((error)=>{
+        console.log(error)
+      })
      },
 
      getPrize:function(){
-    // let _that=this;
-    //  getPrize().then(function(response){
-    //    _that.prize= response.data.data.prize;
-    //    _that.summaryImage=response.data.data.img;
-    //  }).catch((error)=>{
-    //     console.log(error)
-    //   })
-    this.prize=[{ year:"2012年",content:'“螺旋艺廊”获“2012 WA中国建筑奖”入围奖'},
-      {year:"2011年",content:'被美国建筑师协会会刊《建筑实录》评选为年度全球10佳“设计先锋”(Design Vanguard 2011)。'},
-      {year:"2010年",content:'大舍建筑获法国AS.Architecture-Studio评选的“中国新锐建筑创作奖”'},
-      {year:"2010年",content:'“嘉定新城幼儿园”获第七届“远东建筑奖”佳作奖'},
-      {year:"2010年",content:'“嘉定新城幼儿园”获“2010 WA中国建筑奖”佳作奖'},
-      {year:"2010年",content:'“嘉定新城幼儿园”获第二届“中国建筑传媒奖”最佳建筑提名奖'},
-      {year:"2009年",content:'“江苏软件园吉山基地6号地块”获2009年美国《商业周刊》/《建筑实录》联合颁发的年度最佳商用建筑奖'},
-      {year:"2008年",content:'大舍建筑获首届“中国建筑传媒奖”青年建筑师（团队）入围奖'},
-      {year:"2006年",content:'“青浦夏雨幼儿园”获“2006 WA中国建筑奖”优胜奖'},
-      {year:"2006年",content:'“青浦私营企业协会办公与接待中心”获2006年美国《商业周刊》/《建筑实录》联合颁发的年度最佳商用建筑奖'},
-      {year:"2006年",content:'“青浦私营企业协会办公与接待中心”获“2006 WA中国建筑奖”佳作奖'},
-      {year:"2011年",content:'被美国建筑师协会会刊《建筑实录》评选为年度全球10佳“设计先锋”(Design Vanguard 2011)。'},
-      {year:"2010年",content:'大舍建筑获法国AS.Architecture-Studio评选的“中国新锐建筑创作奖”'},
-      {year:"2010年",content:'“嘉定新城幼儿园”获第七届“远东建筑奖”佳作奖'},
-      {year:"2010年",content:'“嘉定新城幼儿园”获“2010 WA中国建筑奖”佳作奖'},
-      {year:"2010年",content:'“嘉定新城幼儿园”获第二届“中国建筑传媒奖”最佳建筑提名奖'},
-      {year:"2009年",content:'“江苏软件园吉山基地6号地块”获2009年美国《商业周刊》/《建筑实录》联合颁发的年度最佳商用建筑奖'},
-      {year:"2008年",content:'大舍建筑获首届“中国建筑传媒奖”青年建筑师（团队）入围奖'},
-      {year:"2006年",content:'“青浦夏雨幼儿园”获“2006 WA中国建筑奖”优胜奖'},
-      {year:"2006年",content:'“青浦私营企业协会办公与接待中心”获2006年美国《商业周刊》/《建筑实录》联合颁发的年度最佳商用建筑奖'},
-      {year:"2006年",content:'“青浦私营企业协会办公与接待中心”获“2006 WA中国建筑奖”佳作奖'}];
-      this.summaryImage="https://ss0.baidu.com/73t1bjeh1BF3odCf/it/u=3778071464,1248453298&fm=85&s=E0B81CD75A1326D0C0B1A4250300F04A"
+    let _that=this;
+     getPrize().then(function(response){
+       _that.prize= response.data.data.prize;
+       _that.summaryImage=response.data.data.img;
+     }).catch((error)=>{
+        console.log(error)
+      })
      },
-
-
-
 
  changeSummaryView:function(summary){
        

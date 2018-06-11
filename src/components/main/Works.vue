@@ -30,21 +30,14 @@ export default {
   },
   methods:{
     getWorks:function(){
-    // let _that=this;
-    //  getWorks().then(function(response){
-    //    _that.works = response.data.data.works;
-    //    _that.showimg=response.data.data.works[0].img;
-    //  }).catch((error)=>{
-    //     console.log(error)
-    //   })
+    let _that=this;
+     getWorks().then(function(response){
+       _that.works = response.data.data.works;
+       _that.showimg=response.data.data.works[0].img;
+     }).catch((error)=>{
+        console.log(error)
+      })
     
-     this.works=[ { id:"1",img:"https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=1335141240,1899156428&fm=202", name:"龙美术馆（西岸馆）",  type:"建成", years:" 2011-2014"},
- {  id:"2",img:"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2923094007,932318355&fm=200&gp=0.jpg",name:"青浦青少年活动中心 " ,type:" 建成 ", years:"2009-2012"},
- { id:"3",img:"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=227359244,400191988&fm=200&gp=0.jpg",name:"螺旋艺廊Ⅰ", type:" 建成", years :"2009-2011"},
- { id:"4",img:"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3010670357,2744132745&fm=200&gp=0.jpg",name:"螺旋艺廊Ⅱ" ,type:"建成",  years:"2009-2011"},
- { id:"5",img:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=627278402,3014135081&fm=200&gp=0.jpg",name:"嘉定新城幼儿园" ,type:" 建成",years:" 2008-2010"},
- { id:"6",img:"https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1592363682,600312340&fm=58&bpow=600&bpoh=750",name:"嘉定新城区燃气管理站",type:" 建成",years:" 2008-2009"}]
- this.showimg=this.works[0].img;
     },
     intoWork:function(work){
        this.$router.push({ path: 'works/workView/'+work.id })
