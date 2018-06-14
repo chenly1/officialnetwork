@@ -31,6 +31,9 @@
     <el-form-item label="职位">
     <el-input v-model="exform.YGZW"></el-input>
     </el-form-item>
+     <el-form-item label="入职时间">
+    <el-input v-model="exform.RZSJ"></el-input>
+    </el-form-item>
     </el-form>
      <el-table  :border="true" v-show="showexTabe"
       :data="staffexTable"
@@ -48,7 +51,7 @@
     </el-table>
   <span slot="footer" class="dialog-footer">
     <el-button type="primary"  @click="dialogVisible2 = true">增加经历</el-button>     
-    <el-button type="primary" @click="addStaff">确 定</el-button>
+    <el-button type="primary" @click="addstaff">确 定</el-button>
   </span>
 </el-dialog>
 
@@ -82,7 +85,6 @@
 
 <script>
 import {saveStaff, getStaff,deleteStaff } from '@/axios/axios'
-
 export default {
     data() {
         return {
@@ -126,17 +128,15 @@ export default {
     },
     methods: {
         addstaff:function(){
+            debugger
            let staff={
-               baseinfo:exform,
-               exinfo:taffexTable
+               baseinfo:this.exform,
+               exinfo:this.staffexTable
            }
            let _that=this;
           saveStaff(staff).then(function(response){
-            
-               
                _that.getListData();
                dialogVisible = false;
-
           }).catch(()=>{
 
           })
@@ -175,14 +175,12 @@ export default {
         },
         // 批量操作事件
         batchRemove: function() {
-            debugger
             var ids=[];
             this.sels.forEach(element => {
                 ids.push(element.ID)
             });
             let _that=this;
-            deleteStaff(ids).then(function(response){
-             
+            deleteStaff({ids:ids}).then(function(response){
              _that.getListData();
             }).catch((error)=>{
                  console.log(error)
@@ -191,6 +189,7 @@ export default {
     },
     mounted() {
      this.getListData();
+  
     }
 }
 </script>

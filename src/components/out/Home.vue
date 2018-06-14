@@ -134,8 +134,7 @@ export default {
 			this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-' + i)[0].style.display = status ? 'block' : 'none';
 		}
 	},
-	mounted:function(){
-		debugger
+	mounted:function(){		
 		this.routes=this.$router.options.routes.slice(10);
 	}
 }

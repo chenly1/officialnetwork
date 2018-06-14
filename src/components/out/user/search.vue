@@ -1,36 +1,83 @@
 <template>
     <section>
 <el-upload
-  action="https://jsonplaceholder.typicode.com/posts/"
-  list-type="picture-card"
-  :on-preview="handlePictureCardPreview"
-  :on-remove="handleRemove">
-  <i class="el-icon-plus"></i>
+  class="avatar-uploader"
+  action="api/hellocontroller/img"
+  :on-change="change"
+  ref="upload"
+  :show-file-list="false"
+  :auto-upload="false"  
+  :on-success="handleAvatarSuccess"
+  :before-upload="beforeAvatarUpload">
+  <img v-if="imageUrl" :src="imageUrl" class="avatar">
+  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 </el-upload>
-<el-dialog :visible.sync="dialogVisible">
-  <img width="100%" :src="dialogImageUrl" alt="">
-</el-dialog>
-<el-input
-  type="textarea"
-  :rows="30"
-  placeholder="请输入简介内容"
-  v-model="textarea">
-</el-input>
-<el-button type="primary">上传<i class="el-icon-upload el-icon--right"></i></el-button>
+
+<el-form  :model="introduction" >
+  <el-form-item >
+    <el-input v-model="introduction.brief" placeholder="请输入简介内容" type="textarea" :rows="30"></el-input>
+  </el-form-item>
+    <el-form-item>
+    <el-button type="primary" @click="onSubmit">上传</el-button>
+  </el-form-item>
+</el-form>
     </section>
 </template>
 
 <script>
-import { getIntroduction } from '@/axios/axios'
+import { doCommit,getIntroduction } from '@/axios/axios'
 
 export default {
     data() {
         return {
-         
+        imageUrl:"",
+        introduction:{}
         }
     },
     methods: {
-       
+         getListData(){
+         let _that=this;
+         getIntroduction().then(function(response){
+          _that.introduction=response.data.data.introduction
+          _that.imageUrl=introduction.img
+         }).catch((error)=>{
+             console.log(error)
+         })
+
+        },
+        onSubmit(){
+          debugger
+          // this.$refs.upload.submit();
+          // let url="api/hellocontroller/hello";
+          doCommit(url,this.introduction).then(function(response){
+               
+
+          }).catch(()=>{
+
+          })
+        },
+        change(file, fileList){
+            this.imageUrl=file.url
+        },
+          beforeAvatarUpload(file) {
+         debugger
+        this.imageUrl=file
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
+      },
+    
+       handleAvatarSuccess(response, file, fileList){
+         debugger
+            alert(response)
+       }
     },
     mounted() {
         this.getListData();
@@ -42,4 +89,27 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+ .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
 </style>

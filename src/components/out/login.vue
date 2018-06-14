@@ -4,10 +4,10 @@
           <el-main>
    <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
   <el-form-item label="用户名" prop="checkPass">
-    <el-input style="width:200px"   v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
+    <el-input style="width:200px"   v-model="ruleForm2.user" auto-complete="off"></el-input>
   </el-form-item>
   <el-form-item label="密码" prop="pass">
-    <el-input style="width:200px" type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+    <el-input style="width:200px" type="password" v-model="ruleForm2.password" auto-complete="off"></el-input>
   </el-form-item>
   
   <el-form-item>
@@ -46,10 +46,10 @@ export default {
           age: ''
         },
         rules2: {
-          pass: [
+          password: [
             { validator: validatePass, trigger: 'blur' }
           ],
-          checkPass: [
+          user: [
             { validator: checkusername, trigger: 'blur' }
           ]},
     showimg:"",

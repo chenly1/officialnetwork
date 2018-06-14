@@ -68,10 +68,10 @@ export const getStaff= (param) => {              //获取所有员工信息
 
 
 export const deleteStaff= (ids) => {              //批量删除
-    return axios.delete(`${base}/staff`,{ids})
+    return axios.delete(`${base}/staff`,{data:ids})
 }
 
-export const saveStaff= (staff) => {              //批量删除
+export const saveStaff= (staff) => {              //保存
     return axios.post (`${base}/staff`,{staff})
 }
 
@@ -93,4 +93,8 @@ export const saveWork= (work) => {              //保存奖项
 }
 export const removeImg= (id) => {              //保存奖项 
     return axios.delete (`${base}/`+id)
+}
+
+export const doCommit= (url,param) => {              //表单提交
+    return axios.post (url,{param})
 }
