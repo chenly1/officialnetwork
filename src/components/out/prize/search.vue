@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import {savePrize,getPrize,deletePrize } from '@/axios/axios'
+import {savePrize, getPrizes,deletePrize } from '@/axios/axios'
 
 export default {
     data() {
@@ -83,7 +83,6 @@ export default {
           this.dialogVisible=false
         },
         addPrize:function(){
-            alert("陈工了")
             let _that=this;
            savePrize(this.prizeform).then(function(response){
                _that.getListData;
@@ -98,9 +97,9 @@ export default {
         // 获取table列表数据
         getListData() {
                let _that=this;
-            getPrize().then(function(response){
+               var url='?pageNum='+this.page.pageNum+'&pageCount='+this.page.pageCount
+             getPrizes().then(function(response){
                _that.tableData=response.data.data.prize;
-              
             }).catch((error)=>{
                  console.log(error)
             })
@@ -122,13 +121,12 @@ export default {
         },
         // 批量操作事件
         batchRemove: function() {
-        debugger
             var ids=[];
             this.sels.forEach(element => {
                 ids.push(element.ID)
             });
             let _that=this;
-            deletePrize(ids).then(function(response){
+            deletePrize({ids:ids}).then(function(response){
              
              _that.getListData();
             }).catch((error)=>{

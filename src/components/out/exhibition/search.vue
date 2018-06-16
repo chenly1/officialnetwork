@@ -5,13 +5,13 @@
             </el-table-column>
             <el-table-column type="index" width="60">
             </el-table-column>
-            <el-table-column label="年份" prop="CBNF" sortable min-width="80">
+            <el-table-column label="年份" prop="ZLNF" sortable min-width="80">
             </el-table-column>
-               <el-table-column label="出版物描述" prop="CBMS" sortable min-width="80">
+               <el-table-column label="展览名" prop="ZLMC" sortable min-width="80">
             </el-table-column>
                <el-table-column label="图片"  sortable min-width="80">
-    <template slot-scope="scope" prop="imageUrl">
-        <img  :src="imageUrl" class="avatar" style="height:100px;width:100px">
+    <template slot-scope="scope">
+        <img  :src="scope.row.IMG" class="avatar" style="height:100px;width:100px">
      </template>
                    
 
@@ -23,19 +23,19 @@
         <!--底部工具条-->
         <el-col :span="24" class="toolbar">
             <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">删除</el-button>
-            <el-button type="danger"  @click="dialogVisible = true ;publishform=sels[0]" :disabled="this.sels.length===0">编辑</el-button>
+            <el-button type="danger"  @click="dialogVisible = true ;exhibitionform=sels[0]" :disabled="this.sels.length===0">编辑</el-button>
             <el-button  @click="dialogVisible = true">新增</el-button>
 
 <el-dialog
   title="编辑作品"
    :before-close="beforeClose"      :visible.sync="dialogVisible"
   width="30%">
-      <el-form ref="form" :model="publishform" label-width="80px">
+      <el-form ref="form" :model="exhibitionform" label-width="80px">
     <el-form-item label="年份">
-    <el-input v-model="publishform.JZMC"></el-input>
+    <el-input v-model="exhibitionform.JZMC"></el-input>
     </el-form-item>
-        <el-form-item label="出版物描述">
-    <el-input    v-model="publishform.JZZT"></el-input>
+        <el-form-item label="展览名">
+    <el-input    v-model="exhibitionform.JZZT"></el-input>
     </el-form-item>
 
    <el-upload :auto-upload="flase"
@@ -44,7 +44,7 @@
   :show-file-list="false"
   :on-success="handleAvatarSuccess"
   :before-upload="beforeAvatarUpload">
-  <img v-if="publishform.imageUrl" :src="publishform.imageUrl" class="avatar">
+  <img v-if="exhibitionform.IMG" :src="exhibitionform.IMG" class="avatar">
   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 </el-upload>
     </el-form>
@@ -60,13 +60,12 @@
 </template>
 
 <script>
-import {removeImg,saveWork,getWorkDetail,deleteWork } from '@/axios/axios'
+import {saveExhibition,getExhibition,deleteExhibition } from '@/axios/axios'
 
 export default {
     data() {
         return {
-            imageUrl:"",
-            publishform:{},
+            exhibitionform:{},
             dialogVisible:false,
             listLoading: false, // 加载动画
             displayVal: true,// 查询输入框显示
@@ -79,27 +78,31 @@ export default {
             tableData: [
                 {
                     ID:1,
-                    CBNF:'龙美术馆（西岸馆）1',
-                    CBMS:'建成',
+                    ZLNF:'龙美术馆（西岸馆）1',
+                    ZLMC:'建成',
                     IMG:'https://www.baidu.com/img/bd_logo1.png',
 
                 },   {
                     ID:2,
-                    CBNF:'龙美术馆（西岸馆）2',
-                    CBMS:'建成',
+                    ZLNF:'龙美术馆（西岸馆）2',
+                    ZLMC:'建成',
                     IMG:'https://www.baidu.com/img/bd_logo1.png',
 
                 },   
                 {
                     ID:3,
-                    CBNF:'龙美术馆（西岸馆）3',
-                    CBMS:'建成',
+                    ZLNF:'龙美术馆（西岸馆）3',
+                    ZLMC:'建成',
                     IMG:'https://www.baidu.com/img/bd_logo1.png',
 
                 }]
         }
     },
     methods: {
+          change(file, fileList){
+            debugger
+          this.exhibitionform.IMG=file.url
+        },
          handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
       },
@@ -117,17 +120,16 @@ export default {
         return isJPG && isLt2M;
       },
         beforeClose(done){
-          this.publishform={}
+          this.exhibitionform={}
           this.dialogVisible=false
         },
         addWork:function(){
             this.$refs.upload.submit();
-            alert("陈工了")
             let _that=this;
-           savePrize(this.prizeform).then(function(response){
+           savePrize(this.exhibitionform).then(function(response){
                _that.getListData;
                _that.dialogVisible=false
-               _that.prizeform={}
+               _that.exhibitionform={}
                alert("成功了")
             
            }).catch(()=>{
@@ -137,8 +139,9 @@ export default {
         // 获取table列表数据
         getListData() {
                let _that=this;
-            getWorkDetail().then(function(response){
-               _that.tableData=response.data.data.work;
+                var url='?pageNum='+this.page.pageNum+'&pageCount='+this.page.pageCount
+            getExhibition().then(function(response){
+               _that.tableData=response.data.data.exhibitions;
               
             }).catch((error)=>{
                  console.log(error)
@@ -161,14 +164,12 @@ export default {
         },
         // 批量操作事件
         batchRemove: function() {
-           debugger
             var ids=[];
             this.sels.forEach(element => {
                 ids.push(element.ID)
             });
             let _that=this;
-            deleteWork(ids).then(function(response){
-             
+            deleteExhibition({id:ids}).then(function(response){
              _that.getListData();
             }).catch((error)=>{
                  console.log(error)

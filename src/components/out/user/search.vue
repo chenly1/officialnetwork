@@ -3,6 +3,7 @@
 <el-upload
   class="avatar-uploader"
   action="api/hellocontroller/img"
+  :data="id"
   :on-change="change"
   ref="upload"
   :show-file-list="false"
@@ -30,6 +31,7 @@ import { doCommit,getIntroduction } from '@/axios/axios'
 export default {
     data() {
         return {
+        id:"123",
         imageUrl:"",
         introduction:{}
         }
@@ -47,11 +49,12 @@ export default {
         },
         onSubmit(){
           debugger
-          // this.$refs.upload.submit();
-          // let url="api/hellocontroller/hello";
+          this.$refs.upload.submit();
+           let url="api/hellocontroller/hello";
+            this.$refs.upload.submit();
           doCommit(url,this.introduction).then(function(response){
                
-
+          _that.$refs.upload.submit();
           }).catch(()=>{
 
           })

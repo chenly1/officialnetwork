@@ -230,24 +230,6 @@ export default new Router({
           children: [
             { path: '/user/search', component: UserSearch, name: '简述' }
           ]
-        },
-        {
-          path: '/children/mangement',
-          component: ChildrenMangement,
-          redirect: '/children/search',
-          name: '职员信息',
-          children: [
-            { path: '/children/search', component: ChildrenSearch, name: '职员信息' }
-          ]
-        },
-        {
-          path: '/prize/mangement',
-          component: PrizeMangement,
-          redirect: '/prize/search',
-          name: '奖项列表',
-          children: [
-            { path: '/prize/search', component: ChildrenSearch, name: '奖项' }
-          ]
         }
       ]
     },

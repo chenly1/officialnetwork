@@ -33,7 +33,7 @@
   </div>
 </template>
 <script>
-import {getWork} from '../../axios/axios'
+import {getWorks} from '../../axios/axios'
 export default {
   data () {
     return {

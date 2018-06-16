@@ -21,12 +21,10 @@
             </el-table-column>
         </el-table>
 
-
-
         <!--底部工具条-->
         <el-col :span="24" class="toolbar">
             <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">删除</el-button>
-            <el-button type="danger"  @click="dialogVisible = true ;workform=sels[0]" :disabled="this.sels.length===0">编辑</el-button>
+            <el-button type="danger"  @click="edit" :disabled="this.sels.length===0">编辑</el-button>
             <el-button  @click="dialogVisible = true">新增</el-button>
 
 <el-dialog
@@ -79,12 +77,12 @@
 </template>
 
 <script>
-import {removeImg,saveWork,getWorkDetail,deleteWork } from '@/axios/axios'
+import {removeImg,saveWork,getWorkDetail,deleteWork,getWorkImg} from '@/axios/axios'
 
 export default {
     data() {
         return {
-            fileList: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}],
+            fileList: [{id:1, name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {id:2,name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}],
             workform:{},
             dialogVisible:false,
             listLoading: false, // 加载动画
@@ -130,10 +128,21 @@ export default {
         }
     },
     methods: {
+     edit(){
+         this.dialogVisible=true;
+         this.workform=sels[0];
+         let _that=this;
+         getWorkImg(this.sels[0].id).then(function(response){
+            _that.fileList=response.data.data.img
+         }).catch((error)=>{
+            console.log(error)
+         })
+
+     },
+
      handleRemove(file, fileList) {
-         debugger
         alert(file, fileList);
-        removeImg()
+        // removeImg()
       },
       handlePreview(file) {
        alert(file);
@@ -144,22 +153,20 @@ export default {
         },
         addWork:function(){
             this.$refs.upload.submit();
-            alert("陈工了")
             let _that=this;
            savePrize(this.prizeform).then(function(response){
                _that.getListData;
                _that.dialogVisible=false
                _that.prizeform={}
-               alert("成功了")
-            
-           }).catch(()=>{
+           }).catch((error)=>{
 
            })
         },
         // 获取table列表数据
         getListData() {
                let _that=this;
-            getWorkDetail().then(function(response){
+               var url='?pageNum='+this.page.pageNum+'&pageCount='+this.page.pageCount
+            getWorkDetail(url).then(function(response){
                _that.tableData=response.data.data.work;
               
             }).catch((error)=>{
@@ -183,14 +190,12 @@ export default {
         },
         // 批量操作事件
         batchRemove: function() {
-           debugger
             var ids=[];
             this.sels.forEach(element => {
                 ids.push(element.ID)
             });
             let _that=this;
-            deleteWork(ids).then(function(response){
-             
+            deleteWork({id:ids}).then(function(response){
              _that.getListData();
             }).catch((error)=>{
                  console.log(error)

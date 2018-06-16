@@ -7,11 +7,11 @@
             </el-table-column>
             <el-table-column label="年份" prop="CBNF" sortable min-width="80">
             </el-table-column>
-               <el-table-column label="出版物描述" prop="CBMS" sortable min-width="80">
+               <el-table-column label="描述" prop="CBMS" sortable min-width="80">
             </el-table-column>
                <el-table-column label="图片"  sortable min-width="80">
-    <template slot-scope="scope" prop="imageUrl">
-        <img  :src="imageUrl" class="avatar" style="height:100px;width:100px">
+    <template slot-scope="scope" >
+        <img  :src="scope.row.IMG" class="avatar" style="height:100px;width:200px">
      </template>
                    
 
@@ -22,6 +22,18 @@
             <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">删除</el-button>
             <el-button type="danger"  @click="dialogVisible = true ;publishform=sels[0]" :disabled="this.sels.length===0">编辑</el-button>
             <el-button  @click="dialogVisible = true">新增</el-button>
+<!-- <el-dialog
+  title="提示"
+  :visible.sync="dialogVisible"
+  width="30%"
+  :before-close="handleClose">
+  <span>这是一段信息</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+  </span>
+</el-dialog> -->
+
 
 <el-dialog
   title="编辑作品"
@@ -29,24 +41,25 @@
   width="30%">
       <el-form ref="form" :model="publishform" label-width="80px">
     <el-form-item label="年份">
-    <el-input v-model="publishform.JZMC"></el-input>
+    <el-input v-model="publishform.CBNF"></el-input>
     </el-form-item>
-        <el-form-item label="出版物描述">
-    <el-input    v-model="publishform.JZZT"></el-input>
+        <el-form-item label="描述">
+    <el-input  type="textarea"  rows="3" v-model="publishform.CBMS"></el-input>
     </el-form-item>
 
-   <el-upload :auto-upload="flase"
+   <el-upload :auto-upload="false"
+  :on-change="change"
   class="avatar-uploader"
   action="https://jsonplaceholder.typicode.com/posts/"
   :show-file-list="false"
   :on-success="handleAvatarSuccess"
   :before-upload="beforeAvatarUpload">
-  <img v-if="publishform.imageUrl" :src="publishform.imageUrl" class="avatar">
+  <img v-if="publishform.IMG" :src="publishform.IMG" class="avatar">
   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 </el-upload>
     </el-form>
   <span slot="footer" class="dialog-footer">  
-    <el-button type="primary" @click="addWork">确 定</el-button>
+    <el-button type="primary" @click="addPublish">确 定</el-button>
   </span>
 </el-dialog>
             <el-pagination layout="total, sizes, prev, pager, next, jumper" @current-change="handleCurrentChange" @size-change="handleSizeChange" :current-page="page.pageNum" :page-size="page.pageCount" :page-sizes="[10, 20, 50, 100]" :total="page.total" style="float:right;">
@@ -57,7 +70,7 @@
 </template>
 
 <script>
-import {removeImg,saveWork,getWorkDetail,deleteWork } from '@/axios/axios'
+import {deletepublishs,getpublishs,savePublish } from '@/axios/axios'
 
 export default {
     data() {
@@ -97,6 +110,10 @@ export default {
         }
     },
     methods: {
+        change(file, fileList){
+            debugger
+          this.publishform.IMG=file.url
+        },
          handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
       },
@@ -117,16 +134,13 @@ export default {
           this.publishform={}
           this.dialogVisible=false
         },
-        addWork:function(){
-            this.$refs.upload.submit();
-            alert("陈工了")
+        addPublish:function(){
+            // this.$refs.upload.submit();
             let _that=this;
-           savePrize(this.prizeform).then(function(response){
+           savePublish(this.publishform).then(function(response){
                _that.getListData;
                _that.dialogVisible=false
-               _that.prizeform={}
-               alert("成功了")
-            
+               _that.publishform={}
            }).catch(()=>{
 
            })
@@ -134,7 +148,8 @@ export default {
         // 获取table列表数据
         getListData() {
                let _that=this;
-            getWorkDetail().then(function(response){
+               var url='?pageNum='+this.page.pageNum+'&pageCount='+this.page.pageCount
+            getpublishs(url).then(function(response){
                _that.tableData=response.data.data.work;
               
             }).catch((error)=>{
@@ -158,14 +173,12 @@ export default {
         },
         // 批量操作事件
         batchRemove: function() {
-           debugger
             var ids=[];
             this.sels.forEach(element => {
                 ids.push(element.ID)
             });
             let _that=this;
-            deleteWork(ids).then(function(response){
-             
+            deletepublish({id:ids}).then(function(response){
              _that.getListData();
             }).catch((error)=>{
                  console.log(error)
@@ -192,4 +205,27 @@ export default {
 .dayClass .el-select {
     width: 62px;
 }
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
 </style>

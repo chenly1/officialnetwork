@@ -25,6 +25,7 @@ export default {
 }
 </style>
 <style lang="scss">
+ @import url("//unpkg.com/element-ui@2.4.1/lib/theme-chalk/index.css");
 body {
 	margin: 0px;
 	padding: 0px;
